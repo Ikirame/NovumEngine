@@ -1,3 +1,8 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/c++
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++
+
+### C++ ###
 # Prerequisites
 *.d
 
@@ -30,3 +35,24 @@
 *.exe
 *.out
 *.app
+
+# Build folder
+build/*
+
+# Visual studio folders/files
+Win32/*
+x64/
+.vs/*
+CMakeFiles/*
+bin/*
+NovumEngine.dir/*
+lib/*
+NovumEngine/*
+ALL_BUILD*
+cmake_install.cmake
+CMakeCache.txt
+*.vcxproj*
+*.sln
+*.user
+
+# End of https://www.toptal.com/developers/gitignore/api/c++
