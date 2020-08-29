@@ -55,4 +55,8 @@ CMakeCache.txt
 *.sln
 *.user
 
+# CLion folder/files
+.idea/*
+cmake-build-debug/*
+
 # End of https://www.toptal.com/developers/gitignore/api/c++
