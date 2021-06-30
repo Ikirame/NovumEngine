@@ -1,3 +1,5 @@
+project(engine)
+
 set(CMAKE_CXX_STANDARD 17)
 
 if(MSVC)
@@ -21,12 +23,11 @@ file(GLOB_RECURSE BUILD_INC
 	inc/*.h
 	inc/*.hpp)
 
-add_library(${CMAKE_PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} STATIC
 		"${BUILD_SRC}"
 		"${BUILD_INC}")
 
-target_include_directories(${CMAKE_PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
 		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/inc")
 
-target_link_libraries(${CMAKE_PROJECT_NAME} glad glfw
-		${GLFW_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC glad glm glfw ${GLFW_LIBRARIES})

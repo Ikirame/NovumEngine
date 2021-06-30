@@ -1,4 +1,4 @@
-project(NovumEditor)
+project(editor)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -27,4 +27,7 @@ add_executable(${PROJECT_NAME}
 		"${BUILD_SRC}"
 		"${BUILD_INC}")
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_PROJECT_NAME})
+target_include_directories(${PROJECT_NAME}
+		PRIVATE	"${CMAKE_CURRENT_SOURCE_DIR}/inc")
+
+target_link_libraries(${PROJECT_NAME} PRIVATE engine)

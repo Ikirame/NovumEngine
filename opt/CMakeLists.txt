@@ -9,4 +9,5 @@ include_directories(glfw/include)
 
 option(GLM_TEST_ENABLE OFF)
 
-include_directories(glm/include)
+add_subdirectory(glm)
+include_directories(glm)
