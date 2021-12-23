@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 18,
+    "patch": 6
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows",
+      "displayName": "Windows x64 Debug",
+      "description": "Profile to configure the CMake to build with visual studio (cl)",
+      "generator": "Visual Studio 17 2022",
+      "inherits": ["default"],
+      "architecture": {
+        "value": "x64"
+      }
+    },
+    {
+      "name": "linux",
+      "displayName": "Linux x64 Debug",
+      "description": "Profile to configure the CMake to build with gcc compiler",
+      "generator": "gcc",
+      "inherits": ["default"],
+      "architecture": {
+        "value": "x64"
+      }
+    }
+  ]
+}

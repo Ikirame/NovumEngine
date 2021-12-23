@@ -11,5 +11,5 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 90
   - sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
 
-before_script: cmake .
+before_script: cmake --preset linux .
 script: make
