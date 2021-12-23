@@ -2,9 +2,9 @@
 <p align="center"><img width=50% src="https://i.ibb.co/z54BFpf/text-logo.png"></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/C%2B%2B-11%2F14%2F17-yellow.svg">
-  <img src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg">
+  <img alt="language-badge" src="https://img.shields.io/badge/C%2B%2B-11%2F14%2F17-yellow.svg">
+  <img alt="travis-ci-badge" src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
+  <img alt="license-badge" src="https://img.shields.io/badge/License-MIT-blue.svg">
 </p>
 
 ##
@@ -17,7 +17,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project requires packages. If you are on Linux or MacOS you can download this packages directly from your package manager. Otherwise, if you are on Windows you can download the packages from the official websites.
+This project requires packages. If you are on Linux or macOS you can download this packages directly from your package manager. Otherwise, if you are on Windows you can download the packages from the official websites.
 
 * CMake (https://cmake.org/)
 * Git (https://git-scm.com/)
