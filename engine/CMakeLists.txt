@@ -30,4 +30,8 @@ add_library(${PROJECT_NAME} STATIC
 target_include_directories(${PROJECT_NAME}
 		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/inc")
 
-target_link_libraries(${PROJECT_NAME} PUBLIC glad glm glfw ${GLFW_LIBRARIES})
+target_include_directories(${PROJECT_NAME}
+		PRIVATE	"glfw/include"
+		PRIVATE	"glm")
+
+target_link_libraries(${PROJECT_NAME} PRIVATE glad glm glfw ${GLFW_LIBRARIES})
