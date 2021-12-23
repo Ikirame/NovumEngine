@@ -1,11 +1,16 @@
-<p align="center"><img width=20% src="https://i.ibb.co/BswF1vN/logo.png"></p>
-<p align="center"><img width=50% src="https://i.ibb.co/z54BFpf/text-logo.png"></p>
+<div style="text-align: center">
+  <img alt="logo" width="20%" src="https://i.ibb.co/BswF1vN/logo.png">
+</div>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/C%2B%2B-11%2F14%2F17-yellow.svg">
-  <img src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg">
-</p>
+<div style="text-align: center">
+  <img alt="text-logo" width="50%" src="https://i.ibb.co/z54BFpf/text-logo.png">
+</div>
+
+<div style="text-align: center; padding: 1em">
+  <img alt="language-badge" src="https://img.shields.io/badge/C%2B%2B-14%2F17%2F20-yellow">
+  <img alt="travis-ci-badge" src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
+  <img alt="license-badge" src="https://img.shields.io/badge/License-MIT-blue.svg">
+</div>
 
 ##
 
@@ -17,7 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project requires packages. If you are on Linux or MacOS you can download this packages directly from your package manager. Otherwise, if you are on Windows you can download the packages from the official websites.
+This project requires packages. If you are on Linux or macOS you can download this packages directly from your package manager. Otherwise, if you are on Windows you can download the packages from the official websites.
 
 * CMake (https://cmake.org/)
 * Git (https://git-scm.com/)
