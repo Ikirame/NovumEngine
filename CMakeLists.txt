@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21.0)
+cmake_minimum_required(VERSION 3.16.8)
 
 project(NovumEngine
 		VERSION 1.0
