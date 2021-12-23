@@ -1,16 +1,11 @@
-<div style="text-align: center">
-  <img alt="logo" width="20%" src="https://i.ibb.co/BswF1vN/logo.png">
-</div>
+<p align="center"><img width=20% src="https://i.ibb.co/BswF1vN/logo.png"></p>
+<p align="center"><img width=50% src="https://i.ibb.co/z54BFpf/text-logo.png"></p>
 
-<div style="text-align: center">
-  <img alt="text-logo" width="50%" src="https://i.ibb.co/z54BFpf/text-logo.png">
-</div>
-
-<div style="text-align: center; padding: 1em">
-  <img alt="language-badge" src="https://img.shields.io/badge/C%2B%2B-14%2F17%2F20-yellow">
+<p align="center">
+  <img alt="language-badge" src="https://img.shields.io/badge/C%2B%2B-11%2F14%2F17-yellow.svg">
   <img alt="travis-ci-badge" src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
   <img alt="license-badge" src="https://img.shields.io/badge/License-MIT-blue.svg">
-</div>
+</p>
 
 ##
 
