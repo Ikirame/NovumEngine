@@ -1,11 +1,11 @@
-project(engine)
+project(${CMAKE_PROJECT_NAME}_engine)
 
 file(GLOB_RECURSE BUILD_SRC
 	src/*.cpp)
 
 file(GLOB_RECURSE BUILD_INC
-	inc/*.h
-	inc/*.hpp)
+	include/*.h
+	include/*.hpp)
 
 add_library(${PROJECT_NAME} STATIC
 		"${BUILD_SRC}"
@@ -21,7 +21,7 @@ else()
 endif()
 
 target_include_directories(${PROJECT_NAME}
-		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/inc")
+		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 target_include_directories(${PROJECT_NAME}
 		PRIVATE	"glfw/include"

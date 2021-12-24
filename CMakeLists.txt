@@ -1,15 +1,17 @@
 cmake_minimum_required(VERSION 3.16.8)
 
-project(NovumEngine
+project("novum-engine"
 		VERSION 1.0
-		DESCRIPTION "Tiny OpenGL rendering engine")
+		DESCRIPTION "Tiny OpenGL rendering engine"
+		LANGUAGES C CXX)
 
-option(NOVUM_ENGINE_BUILD_EDITOR "Build the editor project" ON)
+option(${PROJECT_NAME}_BUILD_TESTS "Build the tests project" OFF)
 
-add_subdirectory(opt)
+add_subdirectory(opt EXCLUDE_FROM_ALL)
 
 add_subdirectory(engine)
+add_subdirectory(editor)
 
-if(NOVUM_ENGINE_BUILD_EDITOR)
-	add_subdirectory(editor)
+if({PROJECT_NAME}_BUILD_TESTS)
+	add_subdirectory(tests)
 endif()

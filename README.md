@@ -1,9 +1,11 @@
-<p align="center"><img width=20% src="https://i.ibb.co/BswF1vN/logo.png"></p>
-<p align="center"><img width=50% src="https://i.ibb.co/z54BFpf/text-logo.png"></p>
+<p align="center"><img alt="logo" width=20% src="https://i.ibb.co/BswF1vN/logo.png"></p>
+<p align="center"><img alt="text-logo" width=50% src="https://i.ibb.co/z54BFpf/text-logo.png"></p>
 
 <p align="center">
   <img alt="language-badge" src="https://img.shields.io/badge/C%2B%2B-11%2F14%2F17-yellow.svg">
-  <img alt="travis-ci-badge" src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
+  <a style="text-decoration:none !important;" href="https://travis-ci.org/Ikirame/NovumEngine">
+    <img alt="travis-ci-badge" src="https://travis-ci.org/Ikirame/NovumEngine.svg?branch=master">
+  </a>
   <img alt="license-badge" src="https://img.shields.io/badge/License-MIT-blue.svg">
 </p>
 
@@ -53,8 +55,8 @@ cmake ..
 cmake -G "Xcode" ..
 
 # Windows (32bits && 64bits)
-cmake -G "Visual Studio 16" ..
-cmake -G "Visual Studio 16 Win64" ..
+cmake -G "Visual Studio 17" ..
+cmake -G "Visual Studio 17 Win64" ..
 ```
 
 # Usage

@@ -1,11 +1,11 @@
-project(editor)
+project(${CMAKE_PROJECT_NAME}_editor)
 
 file(GLOB_RECURSE BUILD_SRC
 	src/*.cpp)
 
 file(GLOB_RECURSE BUILD_INC
-	inc/*.h
-	inc/*.hpp)
+	include/*.h
+	include/*.hpp)
 
 add_executable(${PROJECT_NAME}
 		"${BUILD_SRC}"
@@ -18,6 +18,6 @@ else()
 endif()
 
 target_include_directories(${PROJECT_NAME}
-		PRIVATE	"${CMAKE_CURRENT_SOURCE_DIR}/inc")
+		PRIVATE	"${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE engine)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_PROJECT_NAME}_engine)
