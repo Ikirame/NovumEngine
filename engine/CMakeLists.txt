@@ -1,4 +1,4 @@
-project(${CMAKE_PROJECT_NAME}_engine)
+project(${CMAKE_PROJECT_NAME})
 
 file(GLOB_RECURSE BUILD_SRC
 	src/*.cpp)
