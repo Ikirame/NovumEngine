@@ -5,7 +5,7 @@ project("novum-engine"
 		DESCRIPTION "Tiny OpenGL rendering engine"
 		LANGUAGES C CXX)
 
-option(NOVUM_ENGINE_BUILD_TESTS "Build the tests project" OFF)
+option(NOVUM_ENGINE_BUILD_TESTS "Build the tests project" ON)
 
 add_subdirectory(opt)
 
