@@ -5,13 +5,13 @@ project("novum-engine"
 		DESCRIPTION "Tiny OpenGL rendering engine"
 		LANGUAGES C CXX)
 
-option(${PROJECT_NAME}_BUILD_TESTS "Build the tests project" OFF)
+option(NOVUM_ENGINE_BUILD_TESTS "Build the tests project" OFF)
 
-add_subdirectory(opt EXCLUDE_FROM_ALL)
+add_subdirectory(opt)
 
 add_subdirectory(engine)
 add_subdirectory(editor)
 
-if({PROJECT_NAME}_BUILD_TESTS)
+if(${NOVUM_ENGINE_BUILD_TESTS})
 	add_subdirectory(tests)
 endif()

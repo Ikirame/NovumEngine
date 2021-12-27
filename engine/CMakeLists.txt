@@ -12,7 +12,7 @@ add_library(${PROJECT_NAME} STATIC
 		"${BUILD_INC}")
 
 if(MSVC)
-	target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+	target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
 else()
 	target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
 	if(NOT WIN32)
@@ -22,9 +22,5 @@ endif()
 
 target_include_directories(${PROJECT_NAME}
 		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-target_include_directories(${PROJECT_NAME}
-		PRIVATE	"glfw/include"
-				"glm")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glad glm glfw ${GLFW_LIBRARIES})

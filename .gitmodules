@@ -5,3 +5,7 @@
 [submodule "opt/glm"]
 	path = opt/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "opt/catch2"]
+	path = opt/catch2
+	url = https://github.com/catchorg/Catch2.git
+	branch = v2.x
