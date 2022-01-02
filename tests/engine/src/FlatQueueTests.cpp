@@ -9,7 +9,7 @@
 
 #include "utility/FlatQueue.hpp"
 
-TEST_CASE("Flat queue without a size of zero", "[FlatQueue]")
+TEST_CASE("An initialized flat queue should be empty", "[FlatQueue]")
 {
     // Arrange & Act
     novum_engine::utility::FlatQueue<int> queue;
