@@ -7,6 +7,9 @@ project("novum-engine"
 
 option(NOVUM_ENGINE_BUILD_TESTS "Build the tests project" ON)
 
+set(NOVUM_ENGINE_WIN_COMMON_FLAGS /W4 /WX)
+set(NOVUM_ENGINE_UNIX_COMMON_FLAGS -Wall -Wextra -Wpedantic -Werror)
+
 add_subdirectory(opt)
 
 add_subdirectory(engine)

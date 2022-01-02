@@ -12,9 +12,9 @@ add_executable(${PROJECT_NAME}
 		"${BUILD_INC}")
 
 if(MSVC)
-	target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+	target_compile_options(${PROJECT_NAME} PRIVATE ${NOVUM_ENGINE_WIN_COMMON_FLAGS})
 else()
-	target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
+	target_compile_options(${PROJECT_NAME} PRIVATE ${NOVUM_ENGINE_WIN_COMMON_FLAGS})
 endif()
 
 target_include_directories(${PROJECT_NAME}

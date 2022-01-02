@@ -12,9 +12,9 @@ add_library(${PROJECT_NAME} STATIC
 		"${BUILD_INC}")
 
 if(MSVC)
-	target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
+	target_compile_options(${PROJECT_NAME} PRIVATE ${NOVUM_ENGINE_WIN_COMMON_FLAGS} /std:c++17)
 else()
-	target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++17)
+	target_compile_options(${PROJECT_NAME} PRIVATE ${NOVUM_ENGINE_WIN_COMMON_FLAGS} -std=c++17)
 	if(NOT WIN32)
 		set(GLAD_LIBRARIES dl)
 	endif()
