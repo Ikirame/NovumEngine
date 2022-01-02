@@ -51,12 +51,19 @@ cd build
 # Linux
 cmake ..
 
+make
+
 # MacOS
 cmake -G "Xcode" ..
+
+cmake --build .
 
 # Windows (32bits && 64bits)
 cmake -G "Visual Studio 17" ..
 cmake -G "Visual Studio 17 Win64" ..
+
+cmake --build .
+
 ```
 
 # Usage
