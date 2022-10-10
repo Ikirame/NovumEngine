@@ -2,7 +2,6 @@
  *  @file    FlatQueue.hpp
  *  @author  Valentin Gerard (Ikirame)
  *  @date    12/23/2021
- *  @version 1.0
  */
 
 #ifndef NOVUM_ENGINE_FLAT_QUEUE_HPP
