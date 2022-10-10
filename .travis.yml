@@ -15,4 +15,6 @@ before_script:
   - mkdir build && cd build
   - cmake ..
 
-script: make
+script:
+  - make
+  - ./tests/engine/novum_engine_tests -d yes
