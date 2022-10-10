@@ -1,15 +1,20 @@
-project(${CMAKE_PROJECT_NAME})
+project(novum_engine)
 
-file(GLOB_RECURSE BUILD_SRC
-	src/*.cpp)
+option(GLFW_BUILD_DOCS OFF)
+option(GLFW_BUILD_EXAMPLES OFF)
+option(GLFW_BUILD_TESTS OFF)
+
+option(GLM_TEST_ENABLE OFF)
+
+add_subdirectory(opt/glad EXCLUDE_FROM_ALL)
+add_subdirectory(opt/glfw EXCLUDE_FROM_ALL)
+add_subdirectory(opt/glm EXCLUDE_FROM_ALL)
 
 file(GLOB_RECURSE BUILD_INC
-	include/*.h
-	include/*.hpp)
+		include/Core.hpp
+		include/utility/FlatQueue.hpp)
 
-add_library(${PROJECT_NAME} STATIC
-		"${BUILD_SRC}"
-		"${BUILD_INC}")
+add_library(${PROJECT_NAME} STATIC "${BUILD_INC}")
 
 if(MSVC)
 	target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
@@ -20,7 +25,10 @@ else()
 	endif()
 endif()
 
+# Todo: To Remove after adding the first ".cpp" file
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+
 target_include_directories(${PROJECT_NAME}
-		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/include")
+		PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glad glm glfw ${GLFW_LIBRARIES})
