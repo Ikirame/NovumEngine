@@ -11,5 +11,10 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 90
   - sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
 
-before_script: cmake .
-script: make
+before_script:
+  - mkdir build && cd build
+  - cmake ..
+
+script:
+  - make
+  - ./tests/engine/novum_engine_tests -d yes
