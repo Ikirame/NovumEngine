@@ -1,10 +1,12 @@
 #include <iostream>
 
+#include "glad/gl.h"
+
 #include "platform/opengl/Context.h"
 
 int	main()
 {
-    novum_engine::platform::opengl::Context context;
+    const novum_engine::platform::opengl::Context context;
 
     std::cout << "Editor launched successfully" << std::endl;
     std::cout << "Press any key to continue ..." << std::endl;

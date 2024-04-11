@@ -4,6 +4,11 @@
  *  @date    10/10/2022
  */
 
+#include <iostream>
+#include <cassert>
+
+#include "glad/gl.h"
+
 #include "platform/opengl/Context.h"
 
 novum_engine::platform::opengl::Context::Context() noexcept {

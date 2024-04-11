@@ -3,32 +3,24 @@ project(novum_engine)
 option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLES OFF)
 option(GLFW_BUILD_TESTS OFF)
-
-option(GLM_TEST_ENABLE OFF)
+option(GLFW_INSTALL OFF)
 
 add_subdirectory(opt/glad EXCLUDE_FROM_ALL)
 add_subdirectory(opt/glfw EXCLUDE_FROM_ALL)
-add_subdirectory(opt/glm EXCLUDE_FROM_ALL)
 
-file(GLOB_RECURSE BUILD_SRC
-		src/platform/opengl/Context.cpp)
+add_library(${PROJECT_NAME} STATIC
+        src/platform/opengl/Context.cpp)
 
-file(GLOB_RECURSE BUILD_INC
-		include/platform/opengl/Context.h
-		include/utility/FlatQueue.hpp)
-
-add_library(${PROJECT_NAME} STATIC "${BUILD_INC}" "${BUILD_SRC}")
-
-if(MSVC)
-	target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
-else()
-	target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++17)
-	if(NOT WIN32)
-		set(GLAD_LIBRARIES dl)
-	endif()
-endif()
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
+else ()
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++17)
+    if (NOT WIN32)
+        set(GLAD_LIBRARIES dl)
+    endif ()
+endif ()
 
 target_include_directories(${PROJECT_NAME}
-		PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+        PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-target_link_libraries(${PROJECT_NAME} glad glm glfw ${GLFW_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC glad glfw)

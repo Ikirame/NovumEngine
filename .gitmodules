@@ -2,10 +2,7 @@
 	path = engine/opt/glfw
 	url = https://github.com/glfw/glfw.git
 	branch = latest
-[submodule "engine/opt/glm"]
-	path = engine/opt/glm
-	url = https://github.com/g-truc/glm.git
 [submodule "tests/opt/catch2"]
 	path = tests/opt/catch2
 	url = https://github.com/catchorg/Catch2.git
-	branch = v2.x
+	branch = devel

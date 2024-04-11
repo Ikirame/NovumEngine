@@ -7,11 +7,7 @@
 #ifndef NOVUM_ENGINE_CONTEXT_H
 #define NOVUM_ENGINE_CONTEXT_H
 
-#include <iostream>
-#include <cassert>
-
-#include "glad/gl.h"
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 
 namespace novum_engine::platform::opengl
 {
