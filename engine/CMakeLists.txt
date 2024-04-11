@@ -1,37 +1,26 @@
-project(engine)
+project(novum_engine)
 
-set(CMAKE_CXX_STANDARD 17)
+option(GLFW_BUILD_DOCS OFF)
+option(GLFW_BUILD_EXAMPLES OFF)
+option(GLFW_BUILD_TESTS OFF)
+option(GLFW_INSTALL OFF)
 
-if(MSVC)
-	string(REGEX REPLACE "/W3" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
-    if(NOT WIN32)
-        set(GLAD_LIBRARIES dl)
-    endif()
-endif()
-
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING
-      "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel." FORCE)
-endif(NOT CMAKE_BUILD_TYPE)
-
-file(GLOB_RECURSE BUILD_SRC
-	src/*.cpp)
-
-file(GLOB_RECURSE BUILD_INC
-	inc/*.h
-	inc/*.hpp)
+add_subdirectory(opt/glad EXCLUDE_FROM_ALL)
+add_subdirectory(opt/glfw EXCLUDE_FROM_ALL)
 
 add_library(${PROJECT_NAME} STATIC
-		"${BUILD_SRC}"
-		"${BUILD_INC}")
+        src/platform/opengl/Context.cpp)
+
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
+else ()
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++17)
+    if (NOT WIN32)
+        set(GLAD_LIBRARIES dl)
+    endif ()
+endif ()
 
 target_include_directories(${PROJECT_NAME}
-		PUBLIC	"${CMAKE_CURRENT_SOURCE_DIR}/inc")
+        PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-target_include_directories(${PROJECT_NAME}
-		PRIVATE	"glfw/include"
-		PRIVATE	"glm")
-
-target_link_libraries(${PROJECT_NAME} PRIVATE glad glm glfw ${GLFW_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC glad glfw)

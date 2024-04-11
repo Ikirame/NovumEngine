@@ -1,7 +1,8 @@
-[submodule "opt/glfw"]
-	path = opt/glfw
+[submodule "engine/opt/glfw"]
+	path = engine/opt/glfw
 	url = https://github.com/glfw/glfw.git
 	branch = latest
-[submodule "opt/glm"]
-	path = opt/glm
-	url = https://github.com/g-truc/glm.git
+[submodule "tests/opt/catch2"]
+	path = tests/opt/catch2
+	url = https://github.com/catchorg/Catch2.git
+	branch = devel
