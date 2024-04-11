@@ -45,7 +45,7 @@ jobs:
             c_compiler: cl
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
           submodules: true
 
@@ -57,6 +57,7 @@ jobs:
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
       - name: Install libxrandr
+        if: ${{ !contains(matrix.os, 'windows-latest') }}
         run: sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
 
       - name: Configure CMake
