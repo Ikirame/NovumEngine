@@ -4,7 +4,7 @@
 <p align="center">
   <img alt="language-badge" src="https://img.shields.io/badge/C%2B%2B-11%2F14%2F17-yellow.svg">
   <a style="text-decoration:none !important;" href="https://app.travis-ci.com/github/Ikirame/NovumEngine">
-    <img alt="travis-ci-badge" src="https://app.travis-ci.com/Ikirame/NovumEngine.svg?branch=master">
+    <img alt="github-action-badge" src="https://github.com/github/docs/actions/workflows/build.yml/badge.svg">
   </a>
   <img alt="license-badge" src="https://img.shields.io/badge/License-MIT-blue.svg">
 </p>
