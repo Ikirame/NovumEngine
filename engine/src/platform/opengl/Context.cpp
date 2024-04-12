@@ -5,7 +5,6 @@
  */
 
 #include <iostream>
-#include <cassert>
 #include <memory>
 
 #include "glad/gl.h"
@@ -34,7 +33,7 @@ novum_engine::platform::opengl::Context::Context() noexcept
     if (const auto glad_ret = gladLoadGL(glfwGetProcAddress); !glad_ret)
     {
         glfwTerminate();
-        assert(glad_ret && "GLAD initialization failed");
+        CORE_ASSERT(glad_ret && "GLAD initialization failed");
     }
 
 #ifndef NDEBUG

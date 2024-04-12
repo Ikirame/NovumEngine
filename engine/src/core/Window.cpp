@@ -4,8 +4,6 @@
  *  @date    04/10/2024
  **/
 
-#include <cassert>
-
 #include "glad/gl.h"
 
 #include "core/Window.h"
