@@ -6,14 +6,19 @@
 
 #include <iostream>
 #include <cassert>
+#include <memory>
 
 #include "glad/gl.h"
+#include "GLFW/glfw3.h"
 
 #include "platform/opengl/Context.h"
+#include "core/Window.h"
+#include "utility/Assertion.hpp"
 
-novum_engine::platform::opengl::Context::Context() noexcept {
+novum_engine::platform::opengl::Context::Context() noexcept
+{
     const auto glfw_ret = glfwInit();
-    assert(glfw_ret && "GLFW initialization failed");
+    CORE_ASSERT(glfw_ret && "GLFW initialization failed");
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, opengl_version_major);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, opengl_version_minor);
@@ -24,22 +29,21 @@ novum_engine::platform::opengl::Context::Context() noexcept {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif /* __APPLE__ */
 
-    window = glfwCreateWindow(800, 600, "TEST", nullptr, nullptr);
-    if (!window) {
-        glfwTerminate();
-        assert(window && "GLFW window creation failed");
-    }
+    m_window = std::make_unique<core::Window>();
 
-    glfwMakeContextCurrent(window);
-
-    const auto glad_ret = gladLoadGL(glfwGetProcAddress);
-    if (!glad_ret) {
+    if (const auto glad_ret = gladLoadGL(glfwGetProcAddress); !glad_ret)
+    {
         glfwTerminate();
         assert(glad_ret && "GLAD initialization failed");
     }
 
 #ifndef NDEBUG
     std::cout << "OpenGL " << glGetString(GL_VERSION) << ", GLSL " <<
-              glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n' << std::endl;
+        glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n' << std::endl;
 #endif /* NDEBUG */
+}
+
+novum_engine::platform::opengl::Context::~Context() noexcept
+{
+    glfwTerminate();
 }

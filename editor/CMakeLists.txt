@@ -1,7 +1,10 @@
 project(novum_engine_editor)
 
-add_executable(${PROJECT_NAME}
-        src/main.cpp)
+set(SRC_FILES
+        src/main.cpp
+)
+
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)

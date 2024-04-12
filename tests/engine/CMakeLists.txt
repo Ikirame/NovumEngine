@@ -1,7 +1,10 @@
 PROJECT(novum_engine_tests)
 
-add_executable(${PROJECT_NAME}
-        src/FlatQueueTests.cpp)
+set(TEST_FILES
+        src/FlatQueueTests.cpp
+)
+
+add_executable(${PROJECT_NAME} ${TEST_FILES})
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
