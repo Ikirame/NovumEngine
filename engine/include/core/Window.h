@@ -7,7 +7,7 @@
 #ifndef NOVUM_ENGINE_WINDOW_H
 #define NOVUM_ENGINE_WINDOW_H
 
-#include <iostream>
+#include <string>
 #include <memory>
 
 #include "GLFW/glfw3.h"
