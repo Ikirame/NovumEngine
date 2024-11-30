@@ -1,21 +1,21 @@
 /**
  *  @file    Window.cpp
  *  @author  Valentin Gerard (Ikirame)
- *  @date    04/10/2024
+ *  @date    11/30/2024
  **/
 
-#include "platform/opengl/Window.h"
+#include "Window.h"
 
+#include "platform/opengl/Context.h"
 #include "utility/Assertion.hpp"
 
-novum_engine::platform::opengl::Window::Window(const int width, const int height, std::string const& title) noexcept:
-    core::Window()
+novum_engine::core::Window::Window(int width, int height, const std::string& title) noexcept
 {
     const auto glfw_ret = glfwInit();
     CORE_ASSERT(glfw_ret, "GLFW initialization failed");
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, opengl_version_major);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, opengl_version_minor);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, platform::opengl::opengl_version_major);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, platform::opengl::opengl_version_minor);
 
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -30,7 +30,7 @@ novum_engine::platform::opengl::Window::Window(const int width, const int height
         CORE_ASSERT(window, "GLFW window creation failed");
     }
 
-    m_glfw_window.reset(window);
+    m_native_window.reset(window);
 
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
@@ -48,7 +48,7 @@ novum_engine::platform::opengl::Window::Window(const int width, const int height
 #endif /* NDEBUG */
 }
 
-void novum_engine::platform::opengl::Window::onUpdate() const noexcept
+void novum_engine::core::Window::onUpdate() const noexcept
 {
     //while (!glfwWindowShouldClose(m_glfw_window.get()))
     //{
@@ -64,7 +64,8 @@ void novum_engine::platform::opengl::Window::onUpdate() const noexcept
     //}
 }
 
-void novum_engine::platform::opengl::Window::framebuffer_size_callback(GLFWwindow*, const int width, const int height)
+void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow*, const int width, const int height)
 {
     glViewport(0, 0, width, height);
 }
+

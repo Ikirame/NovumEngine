@@ -7,12 +7,18 @@
 #ifndef NOVUM_ENGINE_CORE_WINDOW_H
 #define NOVUM_ENGINE_CORE_WINDOW_H
 
+#include <memory>
+#include <string>
+
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
+
 namespace novum_engine::core
 {
     class Window
     {
     public:
-        explicit Window() noexcept = default;
+        explicit Window(int width, int height, const std::string& title) noexcept;
 
         Window(Window const& rhs) noexcept = delete;
         Window(Window&& rhs) noexcept = delete;
@@ -20,9 +26,23 @@ namespace novum_engine::core
         Window& operator=(Window const& rhs) noexcept = delete;
         Window& operator=(Window&& rhs) noexcept = delete;
 
-        virtual ~Window() = default;
+        void onUpdate() const noexcept;
 
-        virtual void onUpdate() const noexcept = 0;
+        [[nodiscard]] GLFWwindow* getNativeWindow() const noexcept { return m_native_window.get(); }
+
+    protected:
+        struct GlfwWindowDeleter
+        {
+            void operator()(GLFWwindow* window) const noexcept
+            {
+                glfwDestroyWindow(window);
+            }
+        };
+
+        std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_native_window;
+
+    private:
+        static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
     };
 }
 

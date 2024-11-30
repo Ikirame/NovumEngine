@@ -7,7 +7,7 @@
 #ifndef NOVUM_ENGINE_CORE_APPLICATION_H
 #define NOVUM_ENGINE_CORE_APPLICATION_H
 
-#include "platform/opengl/Window.h"
+#include "core/Window.h"
 
 namespace novum_engine::core
 {
@@ -31,9 +31,9 @@ namespace novum_engine::core
     protected:
         bool m_is_running{true};
 
-        std::unique_ptr<platform::opengl::Window> m_window
+        std::unique_ptr<Window> m_window
         {
-            std::make_unique<platform::opengl::Window>(800, 600, "NovumEngine")
+            std::make_unique<Window>(800, 600, "NovumEngine")
         };
     };
 }

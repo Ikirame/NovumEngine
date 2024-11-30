@@ -4,6 +4,9 @@
  *  @date    04/22/2024
  **/
 
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
+
 #include "platform/opengl/graphics/VertexBufferObject.h"
 
 novum_engine::platform::opengl::graphics::VertexBufferObject::VertexBufferObject(const GLsizeiptr size, const GLvoid* data) noexcept : m_buffer()

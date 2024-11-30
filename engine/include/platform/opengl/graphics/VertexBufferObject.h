@@ -7,8 +7,6 @@
 #ifndef NOVUM_ENGINE_PLATFORM_OPENGL_VERTEX_BUFFER_OBJECT_H
 #define NOVUM_ENGINE_PLATFORM_OPENGL_VERTEX_BUFFER_OBJECT_H
 
-#include <platform/opengl/Context.h>
-
 namespace novum_engine::platform::opengl::graphics
 {
     class VertexBufferObject

@@ -7,9 +7,6 @@
 #ifndef NOVUM_ENGINE_PLATFORM_OPENGL_CONTEXT_H
 #define NOVUM_ENGINE_PLATFORM_OPENGL_CONTEXT_H
 
-#include <glad/gl.h>
-#include <GLFW/glfw3.h>
-
 namespace novum_engine::platform::opengl
 {
     static constexpr int opengl_version_major = 4;

@@ -17,17 +17,16 @@ set(CORE_INCLUDE_FILES
 
 set(CORE_SRC_FILES
         src/core/Application.cpp
+        src/core/Window.cpp
 )
 
 set(OPENGL_PLATFORM_INCLUDE_FILES
         include/platform/opengl/Context.h
-        include/platform/opengl/Window.h
         include/platform/opengl/graphics/VertexBufferObject.h
         include/platform/opengl/graphics/VertexArrayObject.h
 )
 
 set(OPENGL_PLATFORM_SRC_FILES
-        src/platform/opengl/Window.cpp
         src/platform/opengl/graphics/VertexBufferObject.cpp
         src/platform/opengl/graphics/VertexArrayObject.cpp
 )
