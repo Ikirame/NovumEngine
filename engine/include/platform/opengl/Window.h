@@ -8,6 +8,7 @@
 #define NOVUM_ENGINE_PLATFORM_OPENGL_WINDOW_H
 
 #include <memory>
+#include <string>
 
 #include "core/Window.h"
 #include "platform/opengl/Context.h"
