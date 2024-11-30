@@ -1,11 +1,16 @@
-#include "platform/opengl/Context.h"
+/**
+ *  @file    main.cpp
+ *  @author  Valentin Gerard (Ikirame)
+ *  @date    11/30/2024
+ **/
 
-int	main()
+#include "Editor.h"
+
+int main()
 {
-    const novum_engine::platform::opengl::Context context;
-    const auto& window = context.getWindow();
+    const novum_editor::Editor& editor = novum_editor::Editor::getInstance();
+    editor.run();
 
-    window.render();
-
-	return 0;
+    return 0;
 }
+

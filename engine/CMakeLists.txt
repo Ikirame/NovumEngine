@@ -10,19 +10,36 @@ add_subdirectory(opt/glfw EXCLUDE_FROM_ALL)
 
 include_directories(include/core)
 
-set(INCLUDE_FILES
-        include/utility/FlatQueue.hpp
-        include/platform/opengl/Context.h
+set(CORE_INCLUDE_FILES
+        include/core/Application.h
         include/core/Window.h
+)
+
+set(CORE_SRC_FILES
+        src/core/Application.cpp
+)
+
+set(OPENGL_PLATFORM_INCLUDE_FILES
+        include/platform/opengl/Context.h
+        include/platform/opengl/Window.h
+        include/platform/opengl/graphics/VertexBufferObject.h
+        include/platform/opengl/graphics/VertexArrayObject.h
+)
+
+set(OPENGL_PLATFORM_SRC_FILES
+        src/platform/opengl/Window.cpp
+        src/platform/opengl/graphics/VertexBufferObject.cpp
+        src/platform/opengl/graphics/VertexArrayObject.cpp
+)
+
+set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp
+        include/utility/FlatQueue.hpp
 )
 
-set(SRC_FILES
-        src/platform/opengl/Context.cpp
-        src/core/Window.cpp
-)
-
-add_library(${PROJECT_NAME} STATIC ${SRC_FILES} ${INCLUDE_FILES})
+add_library(${PROJECT_NAME} STATIC
+        ${CORE_SRC_FILES} ${OPENGL_PLATFORM_SRC_FILES}
+        ${CORE_INCLUDE_FILES} ${OPENGL_PLATFORM_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES})
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)

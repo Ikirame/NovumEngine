@@ -1,23 +1,18 @@
 /**
  *  @file    Window.h
  *  @author  Valentin Gerard (Ikirame)
- *  @date    04/10/2024
+ *  @date    11/30/2024
  **/
 
-#ifndef NOVUM_ENGINE_WINDOW_H
-#define NOVUM_ENGINE_WINDOW_H
-
-#include <string>
-#include <memory>
-
-#include "GLFW/glfw3.h"
+#ifndef NOVUM_ENGINE_CORE_WINDOW_H
+#define NOVUM_ENGINE_CORE_WINDOW_H
 
 namespace novum_engine::core
 {
     class Window
     {
     public:
-        explicit Window(int width = 1280, int height = 720, std::string const& title = "NovumEngine") noexcept;
+        explicit Window() noexcept = default;
 
         Window(Window const& rhs) noexcept = delete;
         Window(Window&& rhs) noexcept = delete;
@@ -25,21 +20,10 @@ namespace novum_engine::core
         Window& operator=(Window const& rhs) noexcept = delete;
         Window& operator=(Window&& rhs) noexcept = delete;
 
-        void render() const;
+        virtual ~Window() = default;
 
-    private:
-        static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
-        struct GlfwWindowDeleter
-        {
-            void operator()(GLFWwindow* window) const noexcept
-            {
-                glfwDestroyWindow(window);
-            }
-        };
-
-        std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_glfw_window;
+        virtual void onUpdate() const noexcept = 0;
     };
 }
 
-#endif /* NOVUM_ENGINE_WINDOW_H */
+#endif /* NOVUM_ENGINE_CORE_WINDOW_H */

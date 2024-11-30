@@ -4,8 +4,8 @@
  *  @date    04/12/2024
  */
 
-#ifndef NOVUM_ENGINE_ASSERTION_HPP
-#define NOVUM_ENGINE_ASSERTION_HPP
+#ifndef NOVUM_ENGINE_UTILITY_ASSERTION_HPP
+#define NOVUM_ENGINE_UTILITY_ASSERTION_HPP
 
 #include <iostream>
 
@@ -16,17 +16,17 @@
 // into the debugger -- this will be different on each
 // target CPU
 #define exit() { std::exit(EXIT_FAILURE); }
-#define reportAssertionFailure(expr, file, line) { std::cerr << expr << " on file " << file << " at line " << line << std::endl; }
+#define reportAssertionFailure(message, file, line) { std::cerr << message << " on file " << file << " at line " << line << std::endl; }
 // check the expression and fail if it is false
-#define CORE_ASSERT(expr) \
+#define CORE_ASSERT(expr, message) \
 if (expr) { } \
 else \
 { \
-reportAssertionFailure(#expr, __FILE__, __LINE__); \
+reportAssertionFailure(message, __FILE__, __LINE__); \
 exit(); \
 }
 #else
 #define CORE_ASSERT(expr) // evaluates to nothing
 #endif
 
-#endif /* NOVUM_ENGINE_ASSERTION_HPP */
+#endif /* NOVUM_ENGINE_UTILITY_ASSERTION_HPP */
