@@ -68,9 +68,9 @@ void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow*, const in
 
 void novum_engine::core::Window::window_close_callback(GLFWwindow*)
 {
-    event::WindowClosedEvent window_event;
+    event::window::WindowClosedEvent window_event;
 
-    WindowEventDispatcher& dispatcher = WindowEventDispatcher::getInstance();
+    event::window::WindowEventDispatcher& dispatcher = event::window::WindowEventDispatcher::getInstance();
 
     dispatcher.post(window_event);
 }

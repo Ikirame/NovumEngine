@@ -12,8 +12,8 @@
 
 novum_engine::core::Application::Application() noexcept
 {
-    WindowEventDispatcher& dispatcher = WindowEventDispatcher::getInstance();
-    dispatcher.subscribe(WindowEventType::Closed, [this](const utility::event::Event<WindowEventType>&)
+    event::window::WindowEventDispatcher& dispatcher = event::window::WindowEventDispatcher::getInstance();
+    dispatcher.subscribe(event::window::WindowEventType::Closed, [this](const utility::event::Event<event::window::WindowEventType>&)
     {
         m_is_running = false;
     });
