@@ -4,12 +4,17 @@
  *  @date    11/30/2024
  **/
 
+#include "platform/opengl/Context.h"
+
+#include "utility/Assertion.hpp"
+#include "utility/event/Event.hpp"
+
+#include "event/window/WindowClosedEvent.h"
+#include "event/window/WindowEventDispatcher.h"
+
 #include "Window.h"
 
-#include "platform/opengl/Context.h"
-#include "utility/Assertion.hpp"
-
-novum_engine::core::Window::Window(int width, int height, const std::string& title) noexcept
+novum_engine::core::Window::Window(const int width, const int height, const std::string& title) noexcept
 {
     const auto glfw_ret = glfwInit();
     CORE_ASSERT(glfw_ret, "GLFW initialization failed");
@@ -34,7 +39,9 @@ novum_engine::core::Window::Window(int width, int height, const std::string& tit
 
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
+
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetWindowCloseCallback(window, window_close_callback);
 
     if (const auto glad_ret = gladLoadGL(glfwGetProcAddress); !glad_ret)
     {
@@ -50,18 +57,8 @@ novum_engine::core::Window::Window(int width, int height, const std::string& tit
 
 void novum_engine::core::Window::onUpdate() const noexcept
 {
-    //while (!glfwWindowShouldClose(m_glfw_window.get()))
-    //{
-    //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    //glUseProgram(shaderProgram);
-    //vao.bind();
-    //glDrawArrays(GL_TRIANGLES, 0, 3);
-
-    //glfwSwapBuffers(m_glfw_window.get());
-    //glfwPollEvents();
-    //}
+    glfwSwapBuffers(m_native_window.get());
+    glfwPollEvents();
 }
 
 void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow*, const int width, const int height)
@@ -69,3 +66,11 @@ void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow*, const in
     glViewport(0, 0, width, height);
 }
 
+void novum_engine::core::Window::window_close_callback(GLFWwindow*)
+{
+    event::WindowClosedEvent window_event;
+
+    WindowEventDispatcher& dispatcher = WindowEventDispatcher::getInstance();
+
+    dispatcher.post(window_event);
+}

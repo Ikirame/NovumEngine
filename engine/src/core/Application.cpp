@@ -4,7 +4,20 @@
  *  @date    11/30/2024
  **/
 
+#include <iostream>
+
+#include "event/window/WindowEventDispatcher.h"
+
 #include "Application.h"
+
+novum_engine::core::Application::Application() noexcept
+{
+    WindowEventDispatcher& dispatcher = WindowEventDispatcher::getInstance();
+    dispatcher.subscribe(WindowEventType::Closed, [this](const utility::event::Event<WindowEventType>&)
+    {
+        m_is_running = false;
+    });
+}
 
 void novum_engine::core::Application::run() const noexcept
 {
@@ -14,8 +27,6 @@ void novum_engine::core::Application::run() const noexcept
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         onUpdate();
-
-        glfwSwapBuffers(m_window->getNativeWindow());
-        glfwPollEvents();
+        m_window->onUpdate();
     }
 }

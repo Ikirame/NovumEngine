@@ -1,11 +1,11 @@
 /**
- *  @file    FlatQueue.hpp
+ *  @file    Assertion.hpp
  *  @author  Valentin Gerard (Ikirame)
  *  @date    04/12/2024
  */
 
-#ifndef NOVUM_ENGINE_UTILITY_ASSERTION_HPP
-#define NOVUM_ENGINE_UTILITY_ASSERTION_HPP
+#ifndef NOVUM_ENGINE_ASSERTION_HPP
+#define NOVUM_ENGINE_ASSERTION_HPP
 
 #include <iostream>
 
@@ -29,4 +29,4 @@ exit(); \
 #define CORE_ASSERT(expr) // evaluates to nothing
 #endif
 
-#endif /* NOVUM_ENGINE_UTILITY_ASSERTION_HPP */
+#endif /* NOVUM_ENGINE_ASSERTION_HPP */

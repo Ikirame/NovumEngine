@@ -4,8 +4,8 @@
  *  @date    11/30/2024
  **/
 
-#ifndef NOVUM_ENGINE_CORE_WINDOW_H
-#define NOVUM_ENGINE_CORE_WINDOW_H
+#ifndef NOVUM_ENGINE_WINDOW_H
+#define NOVUM_ENGINE_WINDOW_H
 
 #include <memory>
 #include <string>
@@ -43,7 +43,8 @@ namespace novum_engine::core
 
     private:
         static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+        static void window_close_callback(GLFWwindow* window);
     };
 }
 
-#endif /* NOVUM_ENGINE_CORE_WINDOW_H */
+#endif /* NOVUM_ENGINE_WINDOW_H */

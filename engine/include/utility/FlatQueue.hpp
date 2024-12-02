@@ -4,8 +4,8 @@
  *  @date    12/23/2021
  */
 
-#ifndef NOVUM_ENGINE_UTILITY_FLAT_QUEUE_HPP
-#define NOVUM_ENGINE_UTILITY_FLAT_QUEUE_HPP
+#ifndef NOVUM_ENGINE_FLAT_QUEUE_HPP
+#define NOVUM_ENGINE_FLAT_QUEUE_HPP
 
 #include <vector>
 #include <cstddef>
@@ -103,4 +103,4 @@ namespace novum_engine::utility
 	};
 }
 
-#endif /* NOVUM_ENGINE_UTILITY_FLAT_QUEUE_HPP */
+#endif /* NOVUM_ENGINE_FLAT_QUEUE_HPP */

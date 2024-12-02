@@ -4,8 +4,8 @@
  *  @date    11/30/2024
  **/
 
-#ifndef NOVUM_ENGINE_CORE_APPLICATION_H
-#define NOVUM_ENGINE_CORE_APPLICATION_H
+#ifndef NOVUM_ENGINE_APPLICATION_H
+#define NOVUM_ENGINE_APPLICATION_H
 
 #include "core/Window.h"
 
@@ -14,7 +14,7 @@ namespace novum_engine::core
     class Application
     {
     public:
-        explicit Application() noexcept = default;
+        explicit Application() noexcept;
 
         Application(Application const& rhs) noexcept = delete;
         Application(Application&& rhs) noexcept = delete;
@@ -38,4 +38,4 @@ namespace novum_engine::core
     };
 }
 
-#endif /* NOVUM_ENGINE_CORE_APPLICATION_H */
+#endif /* NOVUM_ENGINE_APPLICATION_H */

@@ -4,8 +4,8 @@
  *  @date    04/22/2022
  **/
 
-#ifndef NOVUM_ENGINE_PLATFORM_OPENGL_VERTEX_BUFFER_OBJECT_H
-#define NOVUM_ENGINE_PLATFORM_OPENGL_VERTEX_BUFFER_OBJECT_H
+#ifndef NOVUM_ENGINE_OPENGL_VERTEX_BUFFER_OBJECT_H
+#define NOVUM_ENGINE_OPENGL_VERTEX_BUFFER_OBJECT_H
 
 namespace novum_engine::platform::opengl::graphics
 {
@@ -31,4 +31,4 @@ namespace novum_engine::platform::opengl::graphics
     };
 }
 
-#endif /* NOVUM_ENGINE_PLATFORM_OPENGL_VERTEX_BUFFER_OBJECT_H */
+#endif /* NOVUM_ENGINE_OPENGL_VERTEX_BUFFER_OBJECT_H */
