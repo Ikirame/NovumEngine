@@ -7,9 +7,12 @@
 #ifndef NOVUM_ENGINE_WINDOW_EVENT_TYPE_H
 #define NOVUM_ENGINE_WINDOW_EVENT_TYPE_H
 
-enum class WindowEventType
+namespace novum_engine::core::event::window
 {
-    Closed
-};
+    enum class WindowEventType
+    {
+        Closed
+    };
+}
 
 #endif /* NOVUM_ENGINE_WINDOW_EVENT_TYPE_H */

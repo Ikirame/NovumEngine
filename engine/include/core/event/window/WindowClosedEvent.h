@@ -11,7 +11,7 @@
 
 #include "WindowEventType.h"
 
-namespace novum_engine::core::event
+namespace novum_engine::core::event::window
 {
     struct WindowClosedEvent final : utility::event::Event<WindowEventType>
     {

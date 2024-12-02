@@ -11,24 +11,27 @@
 
 #include "WindowEventType.h"
 
-class WindowEventDispatcher final : public novum_engine::utility::event::EventDispatcher<WindowEventType>
+namespace novum_engine::core::event::window
 {
-public:
-    WindowEventDispatcher(WindowEventDispatcher const& rhs) noexcept = delete;
-    WindowEventDispatcher(WindowEventDispatcher&& rhs) noexcept = delete;
-
-    WindowEventDispatcher& operator=(WindowEventDispatcher const& rhs) noexcept = delete;
-    WindowEventDispatcher& operator=(WindowEventDispatcher&& rhs) noexcept = delete;
-
-    static WindowEventDispatcher& getInstance()
+    class WindowEventDispatcher final : public utility::event::EventDispatcher<WindowEventType>
     {
-        static WindowEventDispatcher instance;
-        return instance;
-    }
+    public:
+        WindowEventDispatcher(WindowEventDispatcher const& rhs) noexcept = delete;
+        WindowEventDispatcher(WindowEventDispatcher&& rhs) noexcept = delete;
 
-private:
-    explicit WindowEventDispatcher() noexcept = default;
-    ~WindowEventDispatcher() noexcept = default;
-};
+        WindowEventDispatcher& operator=(WindowEventDispatcher const& rhs) noexcept = delete;
+        WindowEventDispatcher& operator=(WindowEventDispatcher&& rhs) noexcept = delete;
+
+        static WindowEventDispatcher& getInstance()
+        {
+            static WindowEventDispatcher instance;
+            return instance;
+        }
+
+    private:
+        explicit WindowEventDispatcher() noexcept = default;
+        ~WindowEventDispatcher() noexcept = default;
+    };
+}
 
 #endif /* NOVUM_ENGINE_WINDOW_EVENT_DISPATCHER_H */
