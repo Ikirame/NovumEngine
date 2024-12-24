@@ -14,8 +14,8 @@ set(CORE_INCLUDE_FILES
         include/core/Application.h
         include/core/Window.h
         include/core/event/window/WindowClosedEvent.h
+        include/core/event/window/WindowResizedEvent.h
         include/core/event/window/WindowEventType.h
-        include/core/event/window/WindowEventDispatcher.h
 )
 
 set(CORE_SRC_FILES

@@ -1,5 +1,5 @@
 /**
- *  @file    WindowEventDispatcher.h
+ *  @file    WindowEventType.h
  *  @author  Valentin Gerard (Ikirame)
  *  @date    12/01/2024
  **/
@@ -11,7 +11,8 @@ namespace novum_engine::core::event::window
 {
     enum class WindowEventType
     {
-        Closed
+        Closed,
+        Resized,
     };
 }
 

@@ -7,10 +7,9 @@
 #include "platform/opengl/Context.h"
 
 #include "utility/Assertion.hpp"
-#include "utility/event/Event.hpp"
 
 #include "event/window/WindowClosedEvent.h"
-#include "event/window/WindowEventDispatcher.h"
+#include "event/window/WindowResizedEvent.h"
 
 #include "Window.h"
 
@@ -40,6 +39,8 @@ novum_engine::core::Window::Window(const int width, const int height, const std:
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
 
+    glfwSetWindowUserPointer(window, this);
+
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetWindowCloseCallback(window, window_close_callback);
 
@@ -61,16 +62,20 @@ void novum_engine::core::Window::onUpdate() const noexcept
     glfwPollEvents();
 }
 
-void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow*, const int width, const int height)
+void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow* window, const int width, const int height)
 {
     glViewport(0, 0, width, height);
+
+    const Window* self = static_cast<Window*>(glfwGetWindowUserPointer(window));
+
+    event::window::WindowResizedEvent window_event{width, height};
+    self->m_event_dispatcher->post(window_event);
 }
 
-void novum_engine::core::Window::window_close_callback(GLFWwindow*)
+void novum_engine::core::Window::window_close_callback(GLFWwindow* window)
 {
+    const Window* self = static_cast<Window*>(glfwGetWindowUserPointer(window));
+
     event::window::WindowClosedEvent window_event;
-
-    event::window::WindowEventDispatcher& dispatcher = event::window::WindowEventDispatcher::getInstance();
-
-    dispatcher.post(window_event);
+    self->m_event_dispatcher->post(window_event);
 }

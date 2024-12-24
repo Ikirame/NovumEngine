@@ -13,6 +13,9 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
+#include "core/event/window/WindowEventType.h"
+#include "utility/event/EventDispatcher.hpp"
+
 namespace novum_engine::core
 {
     class Window
@@ -30,7 +33,12 @@ namespace novum_engine::core
 
         [[nodiscard]] GLFWwindow* getNativeWindow() const noexcept { return m_native_window.get(); }
 
-    protected:
+        void subscribe(const event::window::WindowEventType& type, const std::function<void(const utility::event::Event<event::window::WindowEventType>&)>& callback) const noexcept
+        {
+            m_event_dispatcher->subscribe(type, callback);
+        }
+
+    private:
         struct GlfwWindowDeleter
         {
             void operator()(GLFWwindow* window) const noexcept
@@ -40,8 +48,11 @@ namespace novum_engine::core
         };
 
         std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_native_window;
+        std::unique_ptr<utility::event::EventDispatcher<event::window::WindowEventType>> m_event_dispatcher
+        {
+            std::make_unique<utility::event::EventDispatcher<event::window::WindowEventType>>()
+        };
 
-    private:
         static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
         static void window_close_callback(GLFWwindow* window);
     };

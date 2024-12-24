@@ -6,14 +6,14 @@
 
 #include <iostream>
 
-#include "event/window/WindowEventDispatcher.h"
-
 #include "Application.h"
+
+#include "event/window/WindowEventType.h"
+#include "event/window/WindowResizedEvent.h"
 
 novum_engine::core::Application::Application() noexcept
 {
-    event::window::WindowEventDispatcher& dispatcher = event::window::WindowEventDispatcher::getInstance();
-    dispatcher.subscribe(event::window::WindowEventType::Closed, [this](const utility::event::Event<event::window::WindowEventType>&)
+    m_window->subscribe(event::window::WindowEventType::Closed, [this](const utility::event::Event<event::window::WindowEventType>&)
     {
         m_is_running = false;
     });
