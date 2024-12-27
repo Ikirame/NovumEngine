@@ -10,6 +10,7 @@
 #include <memory>
 #include <string>
 
+// ReSharper disable once CppUnusedIncludeDirective
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
