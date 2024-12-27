@@ -33,7 +33,9 @@ namespace novum_engine::core
 
         [[nodiscard]] GLFWwindow* getNativeWindow() const noexcept { return m_native_window.get(); }
 
-        void subscribe(const event::window::WindowEventType& type, const std::function<void(const utility::event::Event<event::window::WindowEventType>&)>& callback) const noexcept
+        void subscribe(const event::window::WindowEventType& type,
+                       const std::function<void(const utility::event::Event<event::window::WindowEventType>&)>&
+                       callback) const noexcept
         {
             m_event_dispatcher->subscribe(type, callback);
         }
@@ -53,8 +55,8 @@ namespace novum_engine::core
             std::make_unique<utility::event::EventDispatcher<event::window::WindowEventType>>()
         };
 
-        static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-        static void window_close_callback(GLFWwindow* window);
+        static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
+        static void windowCloseCallback(GLFWwindow* window);
     };
 }
 

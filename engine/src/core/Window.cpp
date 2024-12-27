@@ -41,8 +41,8 @@ novum_engine::core::Window::Window(const int width, const int height, const std:
 
     glfwSetWindowUserPointer(window, this);
 
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetWindowCloseCallback(window, window_close_callback);
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    glfwSetWindowCloseCallback(window, windowCloseCallback);
 
     if (const auto glad_ret = gladLoadGL(glfwGetProcAddress); !glad_ret)
     {
@@ -62,7 +62,7 @@ void novum_engine::core::Window::onUpdate() const noexcept
     glfwPollEvents();
 }
 
-void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow* window, const int width, const int height)
+void novum_engine::core::Window::framebufferSizeCallback(GLFWwindow* window, const int width, const int height)
 {
     glViewport(0, 0, width, height);
 
@@ -72,7 +72,7 @@ void novum_engine::core::Window::framebuffer_size_callback(GLFWwindow* window, c
     self->m_event_dispatcher->post(window_event);
 }
 
-void novum_engine::core::Window::window_close_callback(GLFWwindow* window)
+void novum_engine::core::Window::windowCloseCallback(GLFWwindow* window)
 {
     const Window* self = static_cast<Window*>(glfwGetWindowUserPointer(window));
 

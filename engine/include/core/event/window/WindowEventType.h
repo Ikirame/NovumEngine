@@ -12,7 +12,7 @@ namespace novum_engine::core::event::window
     enum class WindowEventType
     {
         Closed,
-        Resized,
+        Resized
     };
 }
 

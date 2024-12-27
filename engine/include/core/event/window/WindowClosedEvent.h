@@ -15,7 +15,9 @@ namespace novum_engine::core::event::window
 {
     struct WindowClosedEvent final : utility::event::Event<WindowEventType>
     {
-        explicit WindowClosedEvent() noexcept : Event(WindowEventType::Closed) {}
+        explicit WindowClosedEvent() noexcept : Event(WindowEventType::Closed)
+        {
+        }
     };
 }
 

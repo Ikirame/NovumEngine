@@ -25,18 +25,13 @@ set(CORE_SRC_FILES
 
 set(OPENGL_PLATFORM_INCLUDE_FILES
         include/platform/opengl/Context.h
-        include/platform/opengl/graphics/VertexBufferObject.h
-        include/platform/opengl/graphics/VertexArrayObject.h
 )
 
 set(OPENGL_PLATFORM_SRC_FILES
-        src/platform/opengl/graphics/VertexBufferObject.cpp
-        src/platform/opengl/graphics/VertexArrayObject.cpp
 )
 
 set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp
-        include/utility/FlatQueue.hpp
         include/utility/event/EventDispatcher.hpp
         include/utility/event/Event.hpp
 )

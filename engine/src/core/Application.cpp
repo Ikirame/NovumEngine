@@ -13,10 +13,11 @@
 
 novum_engine::core::Application::Application() noexcept
 {
-    m_window->subscribe(event::window::WindowEventType::Closed, [this](const utility::event::Event<event::window::WindowEventType>&)
-    {
-        m_is_running = false;
-    });
+    m_window->subscribe(event::window::WindowEventType::Closed,
+                        [this](const utility::event::Event<event::window::WindowEventType>&)
+                        {
+                            m_is_running = false;
+                        });
 }
 
 void novum_engine::core::Application::run() const noexcept

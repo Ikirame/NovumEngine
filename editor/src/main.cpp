@@ -8,9 +8,5 @@
 
 int main()
 {
-    const novum_editor::Editor& editor = novum_editor::Editor::getInstance();
-    editor.run();
-
-    return 0;
+    novum_editor::Editor::getInstance().run();
 }
-

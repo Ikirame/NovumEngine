@@ -31,22 +31,22 @@ namespace novum_engine::utility::event
 
         void subscribe(T type, const SlotType& func) noexcept
         {
-            _observers[type].push_back(func);
+            m_observers[type].push_back(func);
         }
 
         void post(Event<T>& event) noexcept
         {
-            if (!_observers.contains(event.type))
+            if (!m_observers.contains(event.type))
                 return;
 
-            for (auto&& observer : _observers.at(event.type))
+            for (auto&& observer : m_observers.at(event.type))
             {
                 observer(event);
             }
         }
 
-    protected:
-        std::map<T, std::vector<SlotType>> _observers;
+    private:
+        std::map<T, std::vector<SlotType>> m_observers;
     };
 }
 
