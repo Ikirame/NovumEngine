@@ -1,4 +1,4 @@
-project(novum_editor)
+project(novum_engine_editor)
 
 add_subdirectory(opt/imgui EXCLUDE_FROM_ALL)
 
