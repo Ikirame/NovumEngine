@@ -1,4 +1,4 @@
-PROJECT(novum_unit_tests)
+PROJECT(novum_engine_unit_tests)
 
 option(CATCH_INSTALL_DOCS OFF)
 option(CATCH_INSTALL_EXTRAS OFF)
