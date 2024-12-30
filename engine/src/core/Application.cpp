@@ -4,7 +4,7 @@
  *  @date    11/30/2024
  **/
 
-#include <iostream>
+#include <glad/gl.h>
 
 #include "Application.h"
 

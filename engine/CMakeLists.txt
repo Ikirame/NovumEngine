@@ -23,11 +23,12 @@ set(CORE_SRC_FILES
         src/core/Window.cpp
 )
 
-set(OPENGL_PLATFORM_INCLUDE_FILES
-        include/platform/opengl/Context.h
+set(OPENGL_RENDER_API_INCLUDE_FILES
+        include/render/api/opengl/RenderApi.h
 )
 
-set(OPENGL_PLATFORM_SRC_FILES
+set(OPENGL_RENDER_API_SRC_FILES
+        src/render/api/opengl/RenderApi.cpp
 )
 
 set(UTILITY_INCLUDE_FILES
@@ -37,8 +38,8 @@ set(UTILITY_INCLUDE_FILES
 )
 
 add_library(${PROJECT_NAME} STATIC
-        ${CORE_SRC_FILES} ${OPENGL_PLATFORM_SRC_FILES}
-        ${CORE_INCLUDE_FILES} ${OPENGL_PLATFORM_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES})
+        ${CORE_SRC_FILES} ${OPENGL_RENDER_API_SRC_FILES}
+        ${CORE_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} ${OPENGL_RENDER_API_INCLUDE_FILES})
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)

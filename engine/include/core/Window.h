@@ -10,11 +10,10 @@
 #include <memory>
 #include <string>
 
-// ReSharper disable once CppUnusedIncludeDirective
-#include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
 #include "core/event/window/WindowEventType.h"
+#include "render/api/opengl/RenderApi.h"
 #include "utility/event/EventDispatcher.hpp"
 
 namespace novum_engine::core
@@ -32,7 +31,7 @@ namespace novum_engine::core
 
         void onUpdate() const noexcept;
 
-        [[nodiscard]] GLFWwindow* getNativeWindow() const noexcept { return m_native_window.get(); }
+        [[nodiscard]] void* getNativeWindow() const noexcept { return m_native_window.get(); }
 
         void subscribe(const event::window::WindowEventType& type,
                        const std::function<void(const utility::event::Event<event::window::WindowEventType>&)>&
@@ -55,6 +54,8 @@ namespace novum_engine::core
         {
             std::make_unique<utility::event::EventDispatcher<event::window::WindowEventType>>()
         };
+
+        std::unique_ptr<render::api::opengl::RenderApi> m_render_api;
 
         static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
         static void windowCloseCallback(GLFWwindow* window);

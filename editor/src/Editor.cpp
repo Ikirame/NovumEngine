@@ -22,7 +22,9 @@ novum_editor::Editor::Editor() noexcept
 
     ImGui::StyleColorsDark();
 
-    ImGui_ImplGlfw_InitForOpenGL(m_window->getNativeWindow(), true);
+    auto* window = static_cast<GLFWwindow*>(m_window->getNativeWindow());
+
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init();
 }
 
