@@ -13,7 +13,9 @@
 #include <GLFW/glfw3.h>
 
 #include "core/event/window/WindowEventType.h"
+
 #include "render/api/opengl/RenderApi.h"
+
 #include "utility/event/EventDispatcher.hpp"
 
 namespace novum_engine::core
@@ -28,6 +30,8 @@ namespace novum_engine::core
 
         Window& operator=(Window const& rhs) noexcept = delete;
         Window& operator=(Window&& rhs) noexcept = delete;
+
+        ~Window() noexcept;
 
         void onUpdate() const noexcept;
 

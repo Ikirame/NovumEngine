@@ -19,7 +19,7 @@
 #define reportAssertionFailure(message, file, line) { std::cerr << message << " on file " << file << " at line " << line << std::endl; }
 // check the expression and fail if it is false
 #define CORE_ASSERT(expr, message) \
-if (expr) { } \
+if (!expr) { } \
 else \
 { \
 reportAssertionFailure(message, __FILE__, __LINE__); \

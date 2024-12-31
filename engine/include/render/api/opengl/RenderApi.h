@@ -21,10 +21,6 @@ namespace novum_engine::render::api::opengl
         RenderApi& operator=(RenderApi&& rhs) noexcept = delete;
 
         static void resizeViewport(int x, int y, int width, int height) noexcept;
-
-    private:
-        static constexpr int opengl_version_major = 4;
-        static constexpr int opengl_version_minor = 3;
     };
 }
 

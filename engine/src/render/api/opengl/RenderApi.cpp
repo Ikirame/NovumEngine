@@ -13,19 +13,14 @@
 
 novum_engine::render::api::opengl::RenderApi::RenderApi() noexcept
 {
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, opengl_version_major);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, opengl_version_minor);
-
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif /* __APPLE__ */
 
-    if (const auto glad_ret = gladLoadGL(glfwGetProcAddress); !glad_ret)
-    {
-        CORE_ASSERT(glad_ret, "GLAD initialization failed");
-    }
+    const auto glad_ret = gladLoadGL(glfwGetProcAddress);
+    CORE_ASSERT(!glad_ret, "GLAD initialization failed");
 
 #ifndef NDEBUG
     std::cout << "OpenGL " << glGetString(GL_VERSION) << ", GLSL " <<

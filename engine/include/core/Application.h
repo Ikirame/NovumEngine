@@ -9,6 +9,8 @@
 
 #include "core/Window.h"
 
+#include "event/window/WindowResizedEvent.h"
+
 namespace novum_engine::core
 {
     class Application
@@ -35,6 +37,9 @@ namespace novum_engine::core
         {
             std::make_unique<Window>(800, 600, "NovumEngine")
         };
+
+    private:
+        void onWindowClosed(const utility::event::Event<event::window::WindowEventType>&) { m_is_running = false; }
     };
 }
 
