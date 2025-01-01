@@ -29,11 +29,11 @@ set(EVENT_INCLUDE_FILES
 )
 
 set(OPENGL_GRAPHICS_API_INCLUDE_FILES
-        include/graphics/api/opengl/GraphicsApi.h
+        include/graphics/api/opengl/OpenglGraphicsApi.h
 )
 
 set(OPENGL_GRAPHICS_API_SRC_FILES
-        src/graphics/api/opengl/GraphicsApi.cpp
+        src/graphics/api/opengl/OpenglGraphicsApi.cpp
 )
 
 set(UTILITY_INCLUDE_FILES

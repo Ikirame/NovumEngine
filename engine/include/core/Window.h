@@ -12,7 +12,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include "graphics/api/opengl/GraphicsApi.h"
+#include "graphics/api/opengl/OpenglGraphicsApi.h"
 
 #include "event/EventDispatcher.hpp"
 #include "event/window/WindowEventType.h"
@@ -58,7 +58,7 @@ namespace novum_engine::core
             std::make_unique<event::EventDispatcher<event::window::WindowEventType>>()
         };
 
-        std::unique_ptr<graphics::api::opengl::GraphicsApi> m_render_api;
+        std::unique_ptr<graphics::api::opengl::OpenglGraphicsApi> m_render_api;
 
         static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
         static void windowCloseCallback(GLFWwindow* window);

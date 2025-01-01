@@ -1,5 +1,5 @@
 /**
- *  @file    GraphicsApi.cpp
+ *  @file    OpenglGraphicsApi.cpp
  *  @author  Valentin Gerard (Ikirame)
  *  @date    12/30/2024
  **/
@@ -7,11 +7,11 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
-#include "graphics/api/opengl/GraphicsApi.h"
+#include "graphics/api/opengl/OpenglGraphicsApi.h"
 
 #include "utility/Assertion.hpp"
 
-novum_engine::graphics::api::opengl::GraphicsApi::GraphicsApi() noexcept
+novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noexcept
 {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -24,8 +24,14 @@ novum_engine::graphics::api::opengl::GraphicsApi::GraphicsApi() noexcept
 #endif /* NDEBUG */
 }
 
-void novum_engine::graphics::api::opengl::GraphicsApi::resizeViewport(const int x, const int y, const int width,
+void novum_engine::graphics::api::opengl::OpenglGraphicsApi::resizeViewport(const int x, const int y, const int width,
                                                                       const int height) noexcept
 {
     glViewport(x, y, width, height);
+}
+
+void novum_engine::graphics::api::opengl::OpenglGraphicsApi::render() noexcept
+{
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
