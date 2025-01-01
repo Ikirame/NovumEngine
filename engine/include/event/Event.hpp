@@ -7,7 +7,7 @@
 #ifndef NOVUM_ENGINE_EVENT_HPP
 #define NOVUM_ENGINE_EVENT_HPP
 
-namespace novum_engine::utility::event
+namespace novum_engine::event
 {
     template <typename T>
     struct Event

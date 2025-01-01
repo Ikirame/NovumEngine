@@ -15,7 +15,7 @@
 
 #include "Event.hpp"
 
-namespace novum_engine::utility::event
+namespace novum_engine::event
 {
     template <typename T>
     class EventDispatcher

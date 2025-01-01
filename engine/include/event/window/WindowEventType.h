@@ -7,7 +7,7 @@
 #ifndef NOVUM_ENGINE_WINDOW_EVENT_TYPE_H
 #define NOVUM_ENGINE_WINDOW_EVENT_TYPE_H
 
-namespace novum_engine::core::event::window
+namespace novum_engine::event::window
 {
     enum class WindowEventType
     {

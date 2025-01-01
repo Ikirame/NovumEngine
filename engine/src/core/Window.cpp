@@ -9,7 +9,7 @@
 #include "event/window/WindowClosedEvent.h"
 #include "event/window/WindowResizedEvent.h"
 
-#include "render/api/opengl/RenderApi.h"
+#include "graphics/api/opengl/GraphicsApi.h"
 
 #include "utility/Assertion.hpp"
 
@@ -28,7 +28,7 @@ novum_engine::core::Window::Window(const int width, const int height, const std:
     glfwSetWindowCloseCallback(window, windowCloseCallback);
 
     m_native_window.reset(window);
-    m_render_api = std::make_unique<render::api::opengl::RenderApi>();
+    m_render_api = std::make_unique<graphics::api::opengl::GraphicsApi>();
 }
 
 novum_engine::core::Window::~Window() noexcept
@@ -44,7 +44,7 @@ void novum_engine::core::Window::onUpdate() const noexcept
 
 void novum_engine::core::Window::framebufferSizeCallback(GLFWwindow* window, const int width, const int height)
 {
-    render::api::opengl::RenderApi::resizeViewport(0, 0, width, height);
+    graphics::api::opengl::GraphicsApi::resizeViewport(0, 0, width, height);
 
     const Window* self = static_cast<Window*>(glfwGetWindowUserPointer(window));
 

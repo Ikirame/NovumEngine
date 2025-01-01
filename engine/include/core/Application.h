@@ -39,7 +39,7 @@ namespace novum_engine::core
         };
 
     private:
-        void onWindowClosed(const utility::event::Event<event::window::WindowEventType>&) { m_is_running = false; }
+        void onWindowClosed(const event::Event<event::window::WindowEventType>&) { m_is_running = false; }
     };
 }
 

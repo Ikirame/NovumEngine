@@ -9,11 +9,11 @@
 
 #include "WindowEventType.h"
 
-#include "utility/event/Event.hpp"
+#include "event/Event.hpp"
 
-namespace novum_engine::core::event::window
+namespace novum_engine::event::window
 {
-    struct WindowClosedEvent final : utility::event::Event<WindowEventType>
+    struct WindowClosedEvent final : Event<WindowEventType>
     {
         explicit WindowClosedEvent() noexcept : Event(WindowEventType::Closed)
         {

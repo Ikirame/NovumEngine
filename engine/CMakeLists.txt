@@ -13,9 +13,6 @@ include_directories(include/core)
 set(CORE_INCLUDE_FILES
         include/core/Application.h
         include/core/Window.h
-        include/core/event/window/WindowClosedEvent.h
-        include/core/event/window/WindowResizedEvent.h
-        include/core/event/window/WindowEventType.h
 )
 
 set(CORE_SRC_FILES
@@ -23,23 +20,29 @@ set(CORE_SRC_FILES
         src/core/Window.cpp
 )
 
-set(OPENGL_RENDER_API_INCLUDE_FILES
-        include/render/api/opengl/RenderApi.h
+set(EVENT_INCLUDE_FILES
+        include/event/Event.hpp
+        include/event/EventDispatcher.hpp
+        include/event/window/WindowClosedEvent.h
+        include/event/window/WindowResizedEvent.h
+        include/event/window/WindowEventType.h
 )
 
-set(OPENGL_RENDER_API_SRC_FILES
-        src/render/api/opengl/RenderApi.cpp
+set(OPENGL_GRAPHICS_API_INCLUDE_FILES
+        include/graphics/api/opengl/GraphicsApi.h
+)
+
+set(OPENGL_GRAPHICS_API_SRC_FILES
+        src/graphics/api/opengl/GraphicsApi.cpp
 )
 
 set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp
-        include/utility/event/EventDispatcher.hpp
-        include/utility/event/Event.hpp
 )
 
 add_library(${PROJECT_NAME} STATIC
-        ${CORE_SRC_FILES} ${OPENGL_RENDER_API_SRC_FILES}
-        ${CORE_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} ${OPENGL_RENDER_API_INCLUDE_FILES})
+        ${CORE_SRC_FILES} ${OPENGL_GRAPHICS_API_SRC_FILES}
+        ${CORE_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} ${OPENGL_GRAPHICS_API_INCLUDE_FILES} ${EVENT_INCLUDE_FILES})
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)

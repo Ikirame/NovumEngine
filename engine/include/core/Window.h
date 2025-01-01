@@ -12,11 +12,10 @@
 
 #include <GLFW/glfw3.h>
 
-#include "core/event/window/WindowEventType.h"
+#include "graphics/api/opengl/GraphicsApi.h"
 
-#include "render/api/opengl/RenderApi.h"
-
-#include "utility/event/EventDispatcher.hpp"
+#include "event/EventDispatcher.hpp"
+#include "event/window/WindowEventType.h"
 
 namespace novum_engine::core
 {
@@ -38,7 +37,7 @@ namespace novum_engine::core
         [[nodiscard]] void* getNativeWindow() const noexcept { return m_native_window.get(); }
 
         void subscribe(const event::window::WindowEventType& type,
-                       const std::function<void(const utility::event::Event<event::window::WindowEventType>&)>&
+                       const std::function<void(const event::Event<event::window::WindowEventType>&)>&
                        callback) const noexcept
         {
             m_event_dispatcher->subscribe(type, callback);
@@ -54,12 +53,12 @@ namespace novum_engine::core
         };
 
         std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_native_window;
-        std::unique_ptr<utility::event::EventDispatcher<event::window::WindowEventType>> m_event_dispatcher
+        std::unique_ptr<event::EventDispatcher<event::window::WindowEventType>> m_event_dispatcher
         {
-            std::make_unique<utility::event::EventDispatcher<event::window::WindowEventType>>()
+            std::make_unique<event::EventDispatcher<event::window::WindowEventType>>()
         };
 
-        std::unique_ptr<render::api::opengl::RenderApi> m_render_api;
+        std::unique_ptr<graphics::api::opengl::GraphicsApi> m_render_api;
 
         static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
         static void windowCloseCallback(GLFWwindow* window);
