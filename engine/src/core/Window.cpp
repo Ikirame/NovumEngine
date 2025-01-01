@@ -28,7 +28,7 @@ novum_engine::core::Window::Window(const int width, const int height, const std:
     glfwSetWindowCloseCallback(window, windowCloseCallback);
 
     m_native_window.reset(window);
-    m_render_api = std::make_unique<graphics::api::opengl::OpenglGraphicsApi>();
+    m_graphics_api = std::make_unique<graphics::api::opengl::OpenglGraphicsApi>();
 }
 
 novum_engine::core::Window::~Window() noexcept

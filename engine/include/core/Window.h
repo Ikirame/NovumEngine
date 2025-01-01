@@ -58,7 +58,7 @@ namespace novum_engine::core
             std::make_unique<event::EventDispatcher<event::window::WindowEventType>>()
         };
 
-        std::unique_ptr<graphics::api::opengl::OpenglGraphicsApi> m_render_api;
+        std::unique_ptr<graphics::api::opengl::OpenglGraphicsApi> m_graphics_api;
 
         static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
         static void windowCloseCallback(GLFWwindow* window);
