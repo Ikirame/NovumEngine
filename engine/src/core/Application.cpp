@@ -23,5 +23,3 @@ void novum_engine::core::Application::run() const noexcept
         m_window->onUpdate();
     }
 }
-
-void onWindowClosed() noexcept;

@@ -25,7 +25,7 @@ novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noex
 }
 
 void novum_engine::graphics::api::opengl::OpenglGraphicsApi::resizeViewport(const int x, const int y, const int width,
-                                                                      const int height) noexcept
+                                                                            const int height) noexcept
 {
     glViewport(x, y, width, height);
 }
