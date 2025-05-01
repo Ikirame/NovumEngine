@@ -5,40 +5,37 @@ option(GLFW_BUILD_EXAMPLES OFF)
 option(GLFW_BUILD_TESTS OFF)
 option(GLFW_INSTALL OFF)
 
-add_subdirectory(opt/glad EXCLUDE_FROM_ALL)
-add_subdirectory(opt/glfw EXCLUDE_FROM_ALL)
+include(FetchContent)
+FetchContent_Declare(
+        glfw
+        GIT_REPOSITORY https://github.com/glfw/glfw.git)
+FetchContent_MakeAvailable(glfw)
 
-include_directories(include/core)
+add_subdirectory(opt/glad EXCLUDE_FROM_ALL)
 
 set(CORE_INCLUDE_FILES
         include/core/Application.h
-        include/core/Window.h
-)
+        include/core/Window.h)
 
 set(CORE_SRC_FILES
         src/core/Application.cpp
-        src/core/Window.cpp
-)
+        src/core/Window.cpp)
 
 set(EVENT_INCLUDE_FILES
         include/event/Event.hpp
         include/event/EventDispatcher.hpp
         include/event/window/WindowClosedEvent.h
         include/event/window/WindowResizedEvent.h
-        include/event/window/WindowEventType.h
-)
+        include/event/window/WindowEventType.h)
 
 set(OPENGL_GRAPHICS_API_INCLUDE_FILES
-        include/graphics/api/opengl/OpenglGraphicsApi.h
-)
+        include/graphics/api/opengl/OpenglGraphicsApi.h)
 
 set(OPENGL_GRAPHICS_API_SRC_FILES
-        src/graphics/api/opengl/OpenglGraphicsApi.cpp
-)
+        src/graphics/api/opengl/OpenglGraphicsApi.cpp)
 
 set(UTILITY_INCLUDE_FILES
-        include/utility/Assertion.hpp
-)
+        include/utility/Assertion.hpp)
 
 add_library(${PROJECT_NAME} STATIC
         ${CORE_SRC_FILES} ${OPENGL_GRAPHICS_API_SRC_FILES}

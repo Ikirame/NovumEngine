@@ -1,15 +1,11 @@
 project(novum_engine_editor)
 
-add_subdirectory(opt/imgui EXCLUDE_FROM_ALL)
-
 set(INC_FILES
-        include/Editor.h
-)
+        include/Editor.h)
 
 set(SRC_FILES
         src/main.cpp
-        src/Editor.cpp
-)
+        src/Editor.cpp)
 
 add_executable(${PROJECT_NAME}
         ${SRC_FILES}

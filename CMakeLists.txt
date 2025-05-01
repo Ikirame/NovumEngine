@@ -7,6 +7,8 @@ project("novum-engine"
 
 option(NOVUM_ENGINE_BUILD_TESTS "Build the tests project" ON)
 
+add_subdirectory(opt/imgui EXCLUDE_FROM_ALL)
+
 add_subdirectory(engine EXCLUDE_FROM_ALL)
 add_subdirectory(editor EXCLUDE_FROM_ALL)
 

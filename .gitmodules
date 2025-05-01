@@ -1,7 +1,0 @@
-[submodule "tests/unit/opt/catch2"]
-	path = tests/unit/opt/catch2
-	url = https://github.com/catchorg/Catch2.git
-	branch = devel
-[submodule "engine/opt/glfw"]
-	path = engine/opt/glfw
-	url = https://github.com/glfw/glfw.git

@@ -4,7 +4,7 @@
  *  @date    11/30/2024
  **/
 
-#include "Window.h"
+#include "core/Window.h"
 
 #include "event/window/WindowClosedEvent.h"
 #include "event/window/WindowResizedEvent.h"

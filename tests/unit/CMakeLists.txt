@@ -4,11 +4,15 @@ option(CATCH_INSTALL_DOCS OFF)
 option(CATCH_INSTALL_EXTRAS OFF)
 option(CATCH_BUILD_TESTING OFF)
 
-add_subdirectory(opt/catch2 EXCLUDE_FROM_ALL)
+include(FetchContent)
+FetchContent_Declare(
+        catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG devel)
+FetchContent_MakeAvailable(catch2)
 
 set(TEST_FILES
-        DemoTests.cpp
-)
+        DemoTests.cpp)
 
 add_executable(${PROJECT_NAME} ${TEST_FILES})
 
