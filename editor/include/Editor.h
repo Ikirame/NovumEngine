@@ -26,6 +26,7 @@ namespace novum_editor
             return instance;
         }
 
+    protected:
         void onUpdate() const noexcept override;
 
     private:

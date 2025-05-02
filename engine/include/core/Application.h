@@ -26,11 +26,11 @@ namespace novum_engine::core
 
         virtual ~Application() noexcept = default;
 
-        virtual void onUpdate() const noexcept = 0;
-
         void run() const noexcept;
 
     protected:
+        virtual void onUpdate() const noexcept = 0;
+
         bool m_is_running{true};
 
         std::unique_ptr<Window> m_window
