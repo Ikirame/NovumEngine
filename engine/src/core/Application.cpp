@@ -10,7 +10,7 @@
 
 novum_engine::core::Application::Application() noexcept
 {
-    m_window->subscribe(event::window::WindowEventType::Closed, BIND_EVENT_FN(Application::onWindowClosed));
+    m_window.subscribe(event::window::WindowEventType::Closed, BIND_EVENT_FN(Application::onWindowClosed));
 }
 
 void novum_engine::core::Application::run() const noexcept
@@ -20,6 +20,6 @@ void novum_engine::core::Application::run() const noexcept
         graphics::api::opengl::OpenglGraphicsApi::render();
 
         onUpdate();
-        m_window->onUpdate();
+        m_window.onUpdate();
     }
 }

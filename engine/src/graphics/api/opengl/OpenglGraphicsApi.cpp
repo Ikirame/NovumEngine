@@ -19,6 +19,14 @@ novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noex
     CORE_ASSERT(!glad_ret, "GLAD initialization failed");
 
 #ifndef NDEBUG
+    glEnable(GL_DEBUG_OUTPUT);
+    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION,0, nullptr, GL_FALSE);
+    glDebugMessageCallback([](const GLenum, const GLenum, GLuint, const GLenum, const GLsizei, const GLchar* msg, const void*)
+        {
+            std::cerr << "[GL DEBUG] " << msg << std::endl;
+        }, nullptr);
+
     std::cout << "OpenGL " << glGetString(GL_VERSION) << ", GLSL " <<
         glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n' << std::endl;
 #endif /* NDEBUG */
@@ -32,6 +40,6 @@ void novum_engine::graphics::api::opengl::OpenglGraphicsApi::resizeViewport(cons
 
 void novum_engine::graphics::api::opengl::OpenglGraphicsApi::render() noexcept
 {
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClearColor(0.1f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

@@ -1,7 +1,8 @@
 PROJECT(novum_engine_manual_tests)
 
 set(TEST_INC_FILES
-        include/TestApplication.h)
+        include/TestApplication.h
+)
 
 set(TEST_SRC_FILES
         src/TestApplication.cpp

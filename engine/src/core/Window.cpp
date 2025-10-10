@@ -46,16 +46,16 @@ void novum_engine::core::Window::framebufferSizeCallback(GLFWwindow* window, con
 {
     graphics::api::opengl::OpenglGraphicsApi::resizeViewport(0, 0, width, height);
 
-    const Window* self = static_cast<Window*>(glfwGetWindowUserPointer(window));
+    const auto self = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
     event::window::WindowResizedEvent window_event{width, height};
-    self->m_event_dispatcher->post(window_event);
+    self->m_event_dispatcher.post(window_event);
 }
 
 void novum_engine::core::Window::windowCloseCallback(GLFWwindow* window)
 {
-    const Window* self = static_cast<Window*>(glfwGetWindowUserPointer(window));
+    const auto self = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
     event::window::WindowClosedEvent window_event;
-    self->m_event_dispatcher->post(window_event);
+    self->m_event_dispatcher.post(window_event);
 }

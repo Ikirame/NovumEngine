@@ -33,10 +33,7 @@ namespace novum_engine::core
 
         bool m_is_running{true};
 
-        std::unique_ptr<Window> m_window
-        {
-            std::make_unique<Window>(800, 600, "NovumEngine")
-        };
+        Window m_window{800, 600, "Novum Engine"};
 
     private:
         void onWindowClosed(const event::Event<event::window::WindowEventType>&) { m_is_running = false; }

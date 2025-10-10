@@ -38,9 +38,9 @@ namespace novum_engine::core
 
         void subscribe(const event::window::WindowEventType& type,
                        const std::function<void(const event::Event<event::window::WindowEventType>&)>&
-                       callback) const noexcept
+                       callback) noexcept
         {
-            m_event_dispatcher->subscribe(type, callback);
+            m_event_dispatcher.subscribe(type, callback);
         }
 
     private:
@@ -53,12 +53,9 @@ namespace novum_engine::core
         };
 
         std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_native_window;
-        std::unique_ptr<event::EventDispatcher<event::window::WindowEventType>> m_event_dispatcher
-        {
-            std::make_unique<event::EventDispatcher<event::window::WindowEventType>>()
-        };
-
         std::unique_ptr<graphics::api::opengl::OpenglGraphicsApi> m_graphics_api;
+
+        event::EventDispatcher<event::window::WindowEventType> m_event_dispatcher;
 
         static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
         static void windowCloseCallback(GLFWwindow* window);
