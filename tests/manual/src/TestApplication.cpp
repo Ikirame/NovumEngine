@@ -10,7 +10,7 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
-novum_engine::testing::TestApplication::TestApplication() noexcept
+void novum_engine::testing::TestApplication::onInit() const noexcept
 {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -27,7 +27,7 @@ novum_engine::testing::TestApplication::TestApplication() noexcept
     ImGui_ImplOpenGL3_Init();
 }
 
-void novum_engine::testing::TestApplication::onUpdate() const noexcept
+void novum_engine::testing::TestApplication::onUpdate() noexcept
 {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -38,7 +38,7 @@ void novum_engine::testing::TestApplication::onUpdate() const noexcept
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-novum_engine::testing::TestApplication::~TestApplication() noexcept
+void novum_engine::testing::TestApplication::onDestroy() noexcept
 {
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();

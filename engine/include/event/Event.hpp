@@ -14,9 +14,7 @@ namespace novum_engine::event
     {
         T type;
 
-        explicit Event(T type) : type(type)
-        {
-        }
+        explicit Event(T type) : type(type) {}
 
         virtual ~Event() = default;
     };

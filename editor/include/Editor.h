@@ -4,14 +4,14 @@
  *  @date    11/29/2024
  **/
 
-#ifndef NOVUM_EDITOR_H
-#define NOVUM_EDITOR_H
+#ifndef NOVUM_ENGINE_EDITOR_H
+#define NOVUM_ENGINE_EDITOR_H
 
-#include <core/Application.h>
+#include "core/Application.h"
 
-namespace novum_editor
+namespace novum_engine::editor
 {
-    class Editor final : public novum_engine::core::Application
+    class Editor final : public core::Application<Editor>
     {
     public:
         Editor(Editor const& rhs) noexcept = delete;
@@ -20,19 +20,15 @@ namespace novum_editor
         Editor& operator=(Editor const& rhs) noexcept = delete;
         Editor& operator=(Editor&& rhs) noexcept = delete;
 
-        static const Editor& getInstance()
-        {
-            static Editor instance;
-            return instance;
-        }
-
-    protected:
-        void onUpdate() const noexcept override;
-
     private:
-        explicit Editor() noexcept;
-        ~Editor() noexcept override;
+        friend class Application;
+
+        explicit Editor() noexcept = default;
+
+        static void onInit() noexcept;
+        static void onUpdate() noexcept;
+        static void onDestroy() noexcept;
     };
 };
 
-#endif /* NOVUM_EDITOR_H */
+#endif /* NOVUM_ENGINE_EDITOR_H */

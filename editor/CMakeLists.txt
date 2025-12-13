@@ -12,9 +12,9 @@ add_executable(${PROJECT_NAME}
         ${INC_FILES})
 
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)
 else ()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++17)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++20)
 endif ()
 
 target_include_directories(${PROJECT_NAME}

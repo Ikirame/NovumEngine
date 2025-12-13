@@ -48,7 +48,7 @@ namespace novum_engine::event
         }
 
     private:
-        std::map<T, std::vector<SlotType>> m_observers;
+        std::map<T, std::vector<SlotType> > m_observers;
     };
 }
 

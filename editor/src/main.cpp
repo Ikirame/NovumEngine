@@ -8,5 +8,5 @@
 
 int main()
 {
-    novum_editor::Editor::getInstance().run();
+    novum_engine::editor::Editor::getInstance().run();
 }

@@ -7,26 +7,26 @@
 #ifndef NOVUM_ENGINE_ASSERTION_HPP
 #define NOVUM_ENGINE_ASSERTION_HPP
 
-#include <iostream>
+#include "Logging.hpp"
 
-#define ASSERTIONS_ENABLED true
+#ifdef NOVUM_ENGINE_DEBUG
 
-#if ASSERTIONS_ENABLED
-// define some inline assembly that causes a break
-// into the debugger -- this will be different on each
-// target CPU
-#define exit() { std::exit(EXIT_FAILURE); }
-#define reportAssertionFailure(message, file, line) { std::cerr << message << " on file " << file << " at line " << line << std::endl; }
-// check the expression and fail if it is false
-#define CORE_ASSERT(expr, message) \
-if (!expr) { } \
-else \
-{ \
-reportAssertionFailure(message, __FILE__, __LINE__); \
-exit(); \
-}
+#if defined(_MSC_VER)
+#define ASSERTION_BREAK()   __debugbreak()
+#elif defined(__clang__) || defined(__GNUC__)
+#define ASSERTION_BREAK()   __builtin_trap()
 #else
-#define CORE_ASSERT(expr) // evaluates to nothing
+#define ASSERTION_BREAK()   std::abort()
+#endif
+
+#define NOVUM_ENGINE_ASSERT(expr, message)                                                                      \
+    if (!(expr))                                                                                                \
+    {                                                                                                           \
+        NOVUM_ENGINE_LOG_ERROR("Assertion failed : {0} on file {1} at line {2}", message, __FILE__, __LINE__);  \
+        ASSERTION_BREAK();                                                                                      \
+    }
+#else
+#define NOVUM_ENGINE_ASSERT(expr, message)  ((void)(expr))
 #endif
 
 #endif /* NOVUM_ENGINE_ASSERTION_HPP */

@@ -1,18 +1,27 @@
 /**
- *  @file    WindowResizedEvent.h
+ *  @file    WindowEvent.h
  *  @author  Valentin Gerard (Ikirame)
- *  @date    12/24/2024
+ *  @date    12/01/2024
  **/
 
-#ifndef NOVUM_ENGINE_WINDOW_RESIZED_EVENT_H
-#define NOVUM_ENGINE_WINDOW_RESIZED_EVENT_H
-
-#include "WindowEventType.h"
+#ifndef NOVUM_ENGINE_WINDOW_EVENT_H
+#define NOVUM_ENGINE_WINDOW_EVENT_H
 
 #include "event/Event.hpp"
 
 namespace novum_engine::event::window
 {
+    enum class WindowEventType
+    {
+        Closed,
+        Resized
+    };
+
+    struct WindowEvent final : Event<WindowEventType>
+    {
+        explicit WindowEvent() noexcept : Event(WindowEventType::Closed) {}
+    };
+
     struct WindowResizedEvent final : Event<WindowEventType>
     {
         explicit WindowResizedEvent(const int& width, const int& height) noexcept : Event(WindowEventType::Resized)
@@ -29,4 +38,4 @@ namespace novum_engine::event::window
     };
 }
 
-#endif /* NOVUM_ENGINE_WINDOW_RESIZED_EVENT_H */
+#endif /* NOVUM_ENGINE_WINDOW_EVENT_H */

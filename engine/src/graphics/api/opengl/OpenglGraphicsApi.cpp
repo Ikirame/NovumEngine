@@ -10,26 +10,28 @@
 #include "graphics/api/opengl/OpenglGraphicsApi.h"
 
 #include "utility/Assertion.hpp"
+#include "utility/Logging.hpp"
 
 novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noexcept
 {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     const auto glad_ret = gladLoadGL(glfwGetProcAddress);
-    CORE_ASSERT(!glad_ret, "GLAD initialization failed");
+    NOVUM_ENGINE_ASSERT(glad_ret, "GLAD initialization failed");
 
-#ifndef NDEBUG
+#ifdef NOVUM_ENGINE_DEBUG
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION,0, nullptr, GL_FALSE);
-    glDebugMessageCallback([](const GLenum, const GLenum, GLuint, const GLenum, const GLsizei, const GLchar* msg, const void*)
-        {
-            std::cerr << "[GL DEBUG] " << msg << std::endl;
-        }, nullptr);
+    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
+    glDebugMessageCallback([](const GLenum, const GLenum, GLuint, const GLenum, const GLsizei, const GLchar *msg,
+                              const void *)
+    {
+        spdlog::error("[GL DEBUG] {}", msg);
+    }, nullptr);
 
-    std::cout << "OpenGL " << glGetString(GL_VERSION) << ", GLSL " <<
-        glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n' << std::endl;
-#endif /* NDEBUG */
+    NOVUM_ENGINE_LOG_DEBUG("OpenGL {}, GLSL {}", reinterpret_cast<const char *>(glGetString(GL_VERSION)),
+                           reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
+#endif
 }
 
 void novum_engine::graphics::api::opengl::OpenglGraphicsApi::resizeViewport(const int x, const int y, const int width,
