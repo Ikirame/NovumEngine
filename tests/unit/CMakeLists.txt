@@ -17,9 +17,9 @@ set(TEST_FILES
 add_executable(${PROJECT_NAME} ${TEST_FILES})
 
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++17)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)
 else ()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++17)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -std=c++20)
 endif ()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Catch2WithMain novum_engine)
