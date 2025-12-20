@@ -56,6 +56,11 @@ jobs:
         run: |
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+      - name: Install CMake 4.0.2
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: '4.0.2'
+
       - name: Install Prerequisites (Only linux)
         if: ${{ !contains(matrix.os, 'windows-latest') }}
         run: sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libwayland-dev libxkbcommon-dev

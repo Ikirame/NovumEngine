@@ -1,15 +1,15 @@
-project(novum_engine_editor)
+PROJECT(novum_engine_manual_tests)
 
-set(INC_FILES
-        include/Editor.h)
+set(TEST_INC_FILES
+        include/TestApplication.h)
 
-set(SRC_FILES
-        src/main.cpp
-        src/Editor.cpp)
+set(TEST_SRC_FILES
+        src/TestApplication.cpp
+        src/main.cpp)
 
 add_executable(${PROJECT_NAME}
-        ${SRC_FILES}
-        ${INC_FILES})
+        ${TEST_SRC_FILES}
+        ${TEST_INC_FILES})
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)
@@ -20,4 +20,4 @@ endif ()
 target_include_directories(${PROJECT_NAME}
         PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE novum_engine imgui)
+target_link_libraries(${PROJECT_NAME} PRIVATE imgui novum_engine)

@@ -1,6 +1,4 @@
-option(CATCH_INSTALL_DOCS OFF)
-option(CATCH_INSTALL_EXTRAS OFF)
-option(CATCH_BUILD_TESTING OFF)
+PROJECT(novum_engine_tests)
 
-add_subdirectory(opt/catch2 EXCLUDE_FROM_ALL)
-add_subdirectory(engine EXCLUDE_FROM_ALL)
+add_subdirectory(unit EXCLUDE_FROM_ALL)
+add_subdirectory(manual EXCLUDE_FROM_ALL)
