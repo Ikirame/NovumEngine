@@ -11,7 +11,6 @@
 #include "event/window/WindowEvent.h"
 #include "graphics/api/opengl/OpenglGraphicsApi.h"
 
-#include "platform/Platform.h"
 #include "platform/Window.h"
 
 struct novum_engine::core::Window::WindowImpl

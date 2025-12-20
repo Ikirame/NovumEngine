@@ -33,8 +33,6 @@ namespace novum_engine::platform
     private:
         Platform() noexcept;
         ~Platform() noexcept;
-
-        bool m_initialized = false;
     };
 }
 

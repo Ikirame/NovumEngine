@@ -46,10 +46,13 @@ set(OPENGL_GRAPHICS_API_SRC_FILES
 
 set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp
-        include/utility/Logging.hpp)
+        include/utility/Logger.h)
+
+set(UTILITY_SRC_FILES
+        src/utility/Logger.cpp)
 
 add_library(${PROJECT_NAME} STATIC
-        ${CORE_SRC_FILES} ${PLATFORM_SRC_FILES} ${OPENGL_GRAPHICS_API_SRC_FILES}
+        ${CORE_SRC_FILES} ${PLATFORM_SRC_FILES} ${OPENGL_GRAPHICS_API_SRC_FILES} ${UTILITY_SRC_FILES}
         ${CORE_INCLUDE_FILES} ${PLATFORM_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} ${OPENGL_GRAPHICS_API_INCLUDE_FILES} ${EVENT_INCLUDE_FILES})
 
 if (MSVC)

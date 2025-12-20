@@ -11,7 +11,6 @@
 
 std::unique_ptr<novum_engine::core::Window> novum_engine::platform::Platform::createWindow() const noexcept
 {
-    NOVUM_ENGINE_ASSERT(m_initialized, "Platform not initialized");
     return std::make_unique<core::Window>(800, 600, "novumEngine");
 }
 
@@ -19,8 +18,6 @@ novum_engine::platform::Platform::Platform() noexcept
 {
     const auto glfw_ret = glfwInit();
     NOVUM_ENGINE_ASSERT(glfw_ret, "GLFW initialization failed");
-
-    m_initialized = true;
 }
 
 novum_engine::platform::Platform::~Platform() noexcept
@@ -30,6 +27,5 @@ novum_engine::platform::Platform::~Platform() noexcept
 
 void novum_engine::platform::Platform::pollEvents() const noexcept
 {
-    NOVUM_ENGINE_ASSERT(m_initialized, "Platform not initialized");
     glfwPollEvents();
 }

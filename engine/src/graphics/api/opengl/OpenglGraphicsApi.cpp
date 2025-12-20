@@ -10,7 +10,7 @@
 #include "graphics/api/opengl/OpenglGraphicsApi.h"
 
 #include "utility/Assertion.hpp"
-#include "utility/Logging.hpp"
+#include "utility/Logger.h"
 
 novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noexcept
 {
@@ -26,11 +26,11 @@ novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noex
     glDebugMessageCallback([](const GLenum, const GLenum, GLuint, const GLenum, const GLsizei, const GLchar *msg,
                               const void *)
     {
-        spdlog::error("[GL DEBUG] {}", msg);
+        NOVUM_ENGINE_LOG_ERROR(std::format("[GL DEBUG] {}", msg));
     }, nullptr);
 
-    NOVUM_ENGINE_LOG_DEBUG("OpenGL {}, GLSL {}", reinterpret_cast<const char *>(glGetString(GL_VERSION)),
-                           reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
+    NOVUM_ENGINE_LOG_DEBUG(std::format("OpenGL {}, GLSL {}", reinterpret_cast<const char *>(glGetString(GL_VERSION)),
+        reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION))));
 #endif
 }
 

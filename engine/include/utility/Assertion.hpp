@@ -7,7 +7,7 @@
 #ifndef NOVUM_ENGINE_ASSERTION_HPP
 #define NOVUM_ENGINE_ASSERTION_HPP
 
-#include "Logging.hpp"
+#include <iostream>
 
 #ifdef NOVUM_ENGINE_DEBUG
 
@@ -19,11 +19,11 @@
 #define ASSERTION_BREAK()   std::abort()
 #endif
 
-#define NOVUM_ENGINE_ASSERT(expr, message)                                                                      \
-    if (!(expr))                                                                                                \
-    {                                                                                                           \
-        NOVUM_ENGINE_LOG_ERROR("Assertion failed : {0} on file {1} at line {2}", message, __FILE__, __LINE__);  \
-        ASSERTION_BREAK();                                                                                      \
+#define NOVUM_ENGINE_ASSERT(expr, message)                                                                              \
+    if (!(expr))                                                                                                        \
+    {                                                                                                                   \
+        std::cerr << "Assertion failed: " << message << " on file " << __FILE__ << "at line" << __LINE__ << std::endl;  \
+        ASSERTION_BREAK();                                                                                              \
     }
 #else
 #define NOVUM_ENGINE_ASSERT(expr, message)  ((void)(expr))
