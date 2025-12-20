@@ -31,12 +31,7 @@ This project requires packages. If you are on Linux or macOS you can download th
 * Cloning
 
 ```bash
-# --recursive flag to clone submodules recursively
-git clone --recursive https://github.com/Ikirame/NovumEngine.git
-
-# If you have forgotten the --recursive flag 
-cd NovumEngine
-git submodule update --init
+git clone https://github.com/Ikirame/NovumEngine.git
 ```
 
 * Building
