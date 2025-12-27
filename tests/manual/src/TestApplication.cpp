@@ -21,13 +21,17 @@ void novum_engine::testing::TestApplication::onInit() const noexcept
 
     ImGui::StyleColorsDark();
 
-    auto* window = static_cast<GLFWwindow*>(m_window.getNativeWindow());
+    auto* window = static_cast<GLFWwindow*>(m_window->getNativeWindow());
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init();
 }
 
 void novum_engine::testing::TestApplication::onUpdate() noexcept
+{
+}
+
+void novum_engine::testing::TestApplication::onUpdateUI() noexcept
 {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();

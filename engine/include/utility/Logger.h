@@ -7,7 +7,6 @@
 #ifndef NOVUM_ENGINE_LOGGING_HPP
 #define NOVUM_ENGINE_LOGGING_HPP
 
-#include <format>
 #include <string_view>
 
 #ifdef NOVUM_ENGINE_DEBUG

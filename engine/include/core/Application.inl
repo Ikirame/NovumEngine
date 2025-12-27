@@ -8,7 +8,6 @@
 #define NOVUM_ENGINE_APPLICATION_INLINE_H
 
 #include "Application.h"
-
 #include "event/window/WindowEvent.h"
 #include "platform/Platform.h"
 
@@ -17,7 +16,9 @@ namespace novum_engine::core
     template <typename Derived>
     Application<Derived>::Application() noexcept
     {
-        m_window = platform::Platform::getInstance().createWindow();
+        m_window = m_platform.createWindow();
+        m_graphics_renderer = std::make_unique<graphics::renderer::Renderer>(m_platform.createGraphicsBackend());
+
         m_window->subscribe(event::window::WindowEventType::Closed, BIND_EVENT_FN(Application::onWindowClosed));
 
         const auto& self = static_cast<Derived&>(*this);
@@ -30,11 +31,16 @@ namespace novum_engine::core
         const auto& self = static_cast<const Derived&>(*this);
         while (m_is_running)
         {
-            self.onUpdate();
-            m_window->update();
+            m_platform.pollEvents();
 
-            platform::Platform::getInstance().pollEvents();
-            graphics::api::opengl::OpenglGraphicsApi::render();
+            self.onUpdate();
+
+            m_graphics_renderer->beginFrame();
+            self.onUpdateUI();
+            m_graphics_renderer->render();
+            m_graphics_renderer->endFrame();
+
+            m_window->swapBuffers();
         }
     }
 

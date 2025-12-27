@@ -7,6 +7,8 @@
 #ifndef NOVUM_ENGINE_APPLICATION_H
 #define NOVUM_ENGINE_APPLICATION_H
 
+#include "graphics/renderer/Renderer.h"
+#include "platform/Platform.h"
 #include "platform/Window.h"
 
 namespace novum_engine::core
@@ -36,7 +38,10 @@ namespace novum_engine::core
 
         bool m_is_running{true};
 
-        std::unique_ptr<Window> m_window;
+        std::unique_ptr<platform::Window> m_window;
+        std::unique_ptr<graphics::renderer::Renderer> m_graphics_renderer;
+
+        platform::Platform& m_platform = platform::Platform::getInstance();
 
     private:
         void onWindowClosed(const event::Event<event::window::WindowEventType>&) { m_is_running = false; }

@@ -10,12 +10,10 @@
 #include <memory>
 #include <string>
 
-#include "graphics/api/opengl/OpenglGraphicsApi.h"
-
 #include "event/EventDispatcher.hpp"
 #include "event/window/WindowEvent.h"
 
-namespace novum_engine::core
+namespace novum_engine::platform
 {
     class Window
     {
@@ -30,7 +28,8 @@ namespace novum_engine::core
 
         ~Window() noexcept;
 
-        void update() const noexcept;
+        void swapBuffers() const noexcept;
+        void* getNativeWindow() const noexcept;
 
         void subscribe(const event::window::WindowEventType& type,
                        const std::function<void(const event::Event<event::window::WindowEventType>&)>&
@@ -46,7 +45,6 @@ namespace novum_engine::core
         struct WindowImpl;
 
         std::unique_ptr<WindowImpl> m_native_window;
-        std::unique_ptr<graphics::api::opengl::OpenglGraphicsApi> m_graphics_api;
 
         event::EventDispatcher<event::window::WindowEventType> m_event_dispatcher;
     };

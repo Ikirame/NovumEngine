@@ -9,11 +9,10 @@
 #include "utility/Assertion.hpp"
 
 #include "event/window/WindowEvent.h"
-#include "graphics/api/opengl/OpenglGraphicsApi.h"
 
 #include "platform/Window.h"
 
-struct novum_engine::core::Window::WindowImpl
+struct novum_engine::platform::Window::WindowImpl
 {
     explicit WindowImpl(const int width, const int height, const std::string& title)
     {
@@ -32,6 +31,11 @@ struct novum_engine::core::Window::WindowImpl
     void swapBuffers() const
     {
         glfwSwapBuffers(m_handle.get());
+    }
+
+    GLFWwindow* getNativeWindow() const noexcept
+    {
+        return m_handle.get();
     }
 
     std::function<void()> onClose = [] {};
@@ -61,30 +65,33 @@ private:
     std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_handle;
 };
 
-novum_engine::core::Window::Window(const int width, const int height,
-                                   const std::string& title) noexcept : m_native_window(
+novum_engine::platform::Window::Window(const int width, const int height,
+                                       const std::string& title) noexcept : m_native_window(
     std::make_unique<WindowImpl>(width, height, title))
 {
     m_native_window->onClose = [this] { this->onClose(); };
     m_native_window->onResize = [this](const int w, const int h) { this->onResize(w, h); };
-
-    m_graphics_api = std::make_unique<graphics::api::opengl::OpenglGraphicsApi>();
 }
 
-novum_engine::core::Window::~Window() noexcept = default;
+novum_engine::platform::Window::~Window() noexcept = default;
 
-void novum_engine::core::Window::update() const noexcept
+void novum_engine::platform::Window::swapBuffers() const noexcept
 {
     m_native_window->swapBuffers();
 }
 
-void novum_engine::core::Window::onResize(const int width, const int height) noexcept
+void * novum_engine::platform::Window::getNativeWindow() const noexcept
+{
+    return m_native_window->getNativeWindow();
+}
+
+void novum_engine::platform::Window::onResize(const int width, const int height) noexcept
 {
     event::window::WindowResizedEvent resized_event(width, height);
     m_event_dispatcher.post(resized_event);
 }
 
-void novum_engine::core::Window::onClose() noexcept
+void novum_engine::platform::Window::onClose() noexcept
 {
     event::window::WindowEvent window_event;
     m_event_dispatcher.post(window_event);

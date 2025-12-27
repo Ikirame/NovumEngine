@@ -9,6 +9,8 @@
 
 #include "Window.h"
 
+#include "graphics/backend/opengl/OpenGLBackend.h"
+
 namespace novum_engine::platform
 {
     class Platform
@@ -26,7 +28,8 @@ namespace novum_engine::platform
             return instance;
         }
 
-        [[nodiscard]] std::unique_ptr<core::Window> createWindow() const noexcept;
+        [[nodiscard]] std::unique_ptr<Window> createWindow() const noexcept;
+        [[nodiscard]] std::unique_ptr<graphics::backend::opengl::OpenGLBackend> createGraphicsBackend() const noexcept;
 
         void pollEvents() const noexcept;
 

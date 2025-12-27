@@ -27,6 +27,7 @@ namespace novum_engine::editor
 
         static void onInit() noexcept;
         static void onUpdate() noexcept;
+        static void onUpdateUI() noexcept;
         static void onDestroy() noexcept;
     };
 };
