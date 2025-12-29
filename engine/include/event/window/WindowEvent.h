@@ -13,7 +13,7 @@ namespace novum_engine::event::window
 {
     struct WindowClosedEvent : Event
     {
-        WindowClosedEvent() noexcept = default; /*: Event(EventType::WindowClose) {}*/
+        WindowClosedEvent() noexcept = default;
 
         static constexpr EventType getStaticType() noexcept { return EventType::WindowClose; }
 

@@ -11,7 +11,6 @@ namespace novum_engine::event
 {
     enum class EventType : uint32_t
     {
-        // Window
         WindowClose = 0x0001,
         WindowResize = 0x0002
     };
