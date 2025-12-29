@@ -9,6 +9,7 @@
 
 #include <memory>
 
+#include "event/EventBus.hpp"
 #include "graphics/backend/opengl/OpenGLBackend.h"
 
 namespace novum_engine::graphics::renderer
@@ -16,7 +17,8 @@ namespace novum_engine::graphics::renderer
     class Renderer
     {
     public:
-        explicit Renderer(std::unique_ptr<backend::opengl::OpenGLBackend> graphicsBackend) noexcept;
+        explicit Renderer(std::unique_ptr<backend::opengl::OpenGLBackend> graphicsBackend,
+                          event::EventBus& eventBus) noexcept;
 
         Renderer(Renderer const& rhs) noexcept = delete;
         Renderer(Renderer&& rhs) noexcept = delete;
@@ -30,6 +32,8 @@ namespace novum_engine::graphics::renderer
 
     private:
         std::unique_ptr<backend::opengl::OpenGLBackend> m_graphics_backend;
+
+        event::EventBus& m_event_bus;
     };
 }
 

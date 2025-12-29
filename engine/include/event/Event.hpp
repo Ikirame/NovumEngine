@@ -18,11 +18,12 @@ namespace novum_engine::event
 
     struct Event
     {
-        explicit Event(const EventType type) noexcept : type(type), isHandled(false) {}
+        explicit Event() noexcept = default;
         virtual ~Event() = default;
 
-        EventType type;
-        bool isHandled;
+        virtual EventType getType() const noexcept = 0;
+
+        bool isHandled = false;
     };
 }
 

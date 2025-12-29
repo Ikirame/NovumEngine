@@ -88,12 +88,12 @@ void* novum_engine::platform::Window::getNativeWindow() const noexcept
 
 void novum_engine::platform::Window::onResize(const int width, const int height) const noexcept
 {
-    const event::window::WindowResizedEvent resizedEvent(width, height);
+    event::window::WindowResizedEvent resizedEvent(width, height);
     m_event_dispatcher.publish(resizedEvent);
 }
 
 void novum_engine::platform::Window::onClose() const noexcept
 {
-    const event::window::WindowClosedEvent closedEvent;
+    event::window::WindowClosedEvent closedEvent;
     m_event_dispatcher.publish(closedEvent);
 }

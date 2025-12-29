@@ -25,23 +25,25 @@ namespace novum_engine::event
         EventBus& operator=(EventBus const& rhs) noexcept = delete;
         EventBus& operator=(EventBus&& rhs) noexcept = delete;
 
-        template <typename Fn>
-        void subscribe(const EventType eventType, Fn&& fn) noexcept
+        template <typename EventType, typename Fn>
+        void subscribe(Fn&& fn) noexcept
         {
-            auto wrapper = [f = std::forward<Fn>(fn)](const Event& e)
+            static_assert(std::is_base_of_v<Event, EventType>, "EventType must derive from Event");
+
+            auto callback = [f = std::forward<Fn>(fn)](Event& e)
             {
-                f(static_cast<const Event&>(e));
+                f(static_cast<EventType&>(e));
             };
 
-            m_listeners[eventType].push_back(std::move(wrapper));
+            m_listeners[EventType::getStaticType()].push_back(std::move(callback));
         }
 
-        void publish(const Event& event) const noexcept
+        void publish(Event& event) const noexcept
         {
-            if (!m_listeners.contains(event.type))
+            if (!m_listeners.contains(event.getType()))
                 return;
 
-            for (auto&& listener : m_listeners.at(event.type))
+            for (auto&& listener : m_listeners.at(event.getType()))
             {
                 listener(event);
                 if (event.isHandled)
@@ -52,7 +54,7 @@ namespace novum_engine::event
         }
 
     private:
-        using EventCallback = std::function<void(const Event&)>;
+        using EventCallback = std::function<void(Event&)>;
 
         std::unordered_map<EventType, std::vector<EventCallback> > m_listeners;
     };

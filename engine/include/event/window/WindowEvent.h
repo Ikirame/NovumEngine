@@ -11,18 +11,25 @@
 
 namespace novum_engine::event::window
 {
-    struct WindowClosedEvent final : Event
+    struct WindowClosedEvent : Event
     {
-        WindowClosedEvent() noexcept : Event(EventType::WindowClose) {}
+        WindowClosedEvent() noexcept = default; /*: Event(EventType::WindowClose) {}*/
+
+        static constexpr EventType getStaticType() noexcept { return EventType::WindowClose; }
+
+        EventType getType() const noexcept override { return getStaticType(); }
     };
 
-    struct WindowResizedEvent final : Event
+    struct WindowResizedEvent : Event
     {
-        explicit WindowResizedEvent(const int& width, const int& height) noexcept : Event(EventType::WindowResize),
-            m_width(width), m_height(height) {}
+        explicit WindowResizedEvent(const int& width, const int& height) noexcept : m_width(width), m_height(height) {}
 
         [[nodiscard]] const int& width() const noexcept { return m_width; }
         [[nodiscard]] const int& height() const noexcept { return m_height; }
+
+        static constexpr EventType getStaticType() noexcept { return EventType::WindowResize; }
+
+        EventType getType() const noexcept override { return getStaticType(); }
 
     private:
         int m_width, m_height;

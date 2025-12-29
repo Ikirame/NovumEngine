@@ -8,6 +8,7 @@
 #define NOVUM_ENGINE_APPLICATION_INLINE_H
 
 #include "Application.h"
+#include "event/window/WindowEvent.h"
 #include "platform/Platform.h"
 
 namespace novum_engine::core
@@ -16,11 +17,13 @@ namespace novum_engine::core
     Application<Derived>::Application() noexcept
     {
         m_window = m_platform.createWindow(m_event_dispatcher);
-        m_graphics_renderer = std::make_unique<graphics::renderer::Renderer>(m_platform.createGraphicsBackend());
+        m_graphics_renderer = std::make_unique<graphics::renderer::Renderer>(
+            m_platform.createGraphicsBackend(), m_event_dispatcher);
 
-        m_event_dispatcher.subscribe(event::EventType::WindowClose, [this](const event::Event&)
+        m_event_dispatcher.subscribe<event::window::WindowClosedEvent>([this](event::window::WindowClosedEvent& event)
         {
             m_is_running = false;
+            event.isHandled = true;
         });
 
         const auto& self = static_cast<Derived&>(*this);
