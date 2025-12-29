@@ -66,8 +66,9 @@ private:
 };
 
 novum_engine::platform::Window::Window(const int width, const int height,
-                                       const std::string& title) noexcept : m_native_window(
-    std::make_unique<WindowImpl>(width, height, title))
+                                       const std::string& title,
+                                       event::EventBus& eventDispatcher) noexcept : m_native_window(
+        std::make_unique<WindowImpl>(width, height, title)), m_event_dispatcher(eventDispatcher)
 {
     m_native_window->onClose = [this] { this->onClose(); };
     m_native_window->onResize = [this](const int w, const int h) { this->onResize(w, h); };
@@ -80,19 +81,19 @@ void novum_engine::platform::Window::swapBuffers() const noexcept
     m_native_window->swapBuffers();
 }
 
-void * novum_engine::platform::Window::getNativeWindow() const noexcept
+void* novum_engine::platform::Window::getNativeWindow() const noexcept
 {
     return m_native_window->getNativeWindow();
 }
 
-void novum_engine::platform::Window::onResize(const int width, const int height) noexcept
+void novum_engine::platform::Window::onResize(const int width, const int height) const noexcept
 {
-    event::window::WindowResizedEvent resized_event(width, height);
-    m_event_dispatcher.post(resized_event);
+    const event::window::WindowResizedEvent resizedEvent(width, height);
+    m_event_dispatcher.publish(resizedEvent);
 }
 
-void novum_engine::platform::Window::onClose() noexcept
+void novum_engine::platform::Window::onClose() const noexcept
 {
-    event::window::WindowEvent window_event;
-    m_event_dispatcher.post(window_event);
+    const event::window::WindowClosedEvent closedEvent;
+    m_event_dispatcher.publish(closedEvent);
 }

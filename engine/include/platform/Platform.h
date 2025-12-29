@@ -28,7 +28,7 @@ namespace novum_engine::platform
             return instance;
         }
 
-        [[nodiscard]] std::unique_ptr<Window> createWindow() const noexcept;
+        [[nodiscard]] std::unique_ptr<Window> createWindow(event::EventBus& eventDispatcher) const noexcept;
         [[nodiscard]] std::unique_ptr<graphics::backend::opengl::OpenGLBackend> createGraphicsBackend() const noexcept;
 
         void pollEvents() const noexcept;

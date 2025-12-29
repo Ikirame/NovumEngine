@@ -9,14 +9,20 @@
 
 namespace novum_engine::event
 {
-    template <typename T>
+    enum class EventType : uint32_t
+    {
+        // Window
+        WindowClose = 0x0001,
+        WindowResize = 0x0002
+    };
+
     struct Event
     {
-        T type;
-
-        explicit Event(T type) : type(type) {}
-
+        explicit Event(const EventType type) noexcept : type(type), isHandled(false) {}
         virtual ~Event() = default;
+
+        EventType type;
+        bool isHandled;
     };
 }
 

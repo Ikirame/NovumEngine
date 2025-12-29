@@ -9,9 +9,10 @@
 #include "platform/Platform.h"
 #include "utility/Assertion.hpp"
 
-std::unique_ptr<novum_engine::platform::Window> novum_engine::platform::Platform::createWindow() const noexcept
+std::unique_ptr<novum_engine::platform::Window> novum_engine::platform::Platform::createWindow(
+    event::EventBus& eventDispatcher) const noexcept
 {
-    return std::make_unique<Window>(800, 600, "NovumEngine");
+    return std::make_unique<Window>(800, 600, "NovumEngine", eventDispatcher);
 }
 
 std::unique_ptr<novum_engine::graphics::backend::opengl::OpenGLBackend>

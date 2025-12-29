@@ -10,15 +10,15 @@
 #include <memory>
 #include <string>
 
-#include "event/EventDispatcher.hpp"
-#include "event/window/WindowEvent.h"
+#include "event/EventBus.hpp"
 
 namespace novum_engine::platform
 {
     class Window
     {
     public:
-        explicit Window(int width, int height, const std::string& title) noexcept;
+        explicit Window(int width, int height, const std::string& title,
+                        event::EventBus& eventDispatcher) noexcept;
 
         Window(Window const& rhs) noexcept = delete;
         Window(Window&& rhs) noexcept = delete;
@@ -31,22 +31,15 @@ namespace novum_engine::platform
         void swapBuffers() const noexcept;
         void* getNativeWindow() const noexcept;
 
-        void subscribe(const event::window::WindowEventType& type,
-                       const std::function<void(const event::Event<event::window::WindowEventType>&)>&
-                       callback) noexcept
-        {
-            m_event_dispatcher.subscribe(type, callback);
-        }
-
     private:
-        void onResize(int width, int height) noexcept;
-        void onClose() noexcept;
+        void onResize(int width, int height) const noexcept;
+        void onClose() const noexcept;
 
         struct WindowImpl;
 
         std::unique_ptr<WindowImpl> m_native_window;
 
-        event::EventDispatcher<event::window::WindowEventType> m_event_dispatcher;
+        event::EventBus& m_event_dispatcher;
     };
 }
 

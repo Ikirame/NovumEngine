@@ -41,10 +41,9 @@ namespace novum_engine::core
         std::unique_ptr<platform::Window> m_window;
         std::unique_ptr<graphics::renderer::Renderer> m_graphics_renderer;
 
-        platform::Platform& m_platform = platform::Platform::getInstance();
+        event::EventBus m_event_dispatcher{};
 
-    private:
-        void onWindowClosed(const event::Event<event::window::WindowEventType>&) { m_is_running = false; }
+        platform::Platform& m_platform = platform::Platform::getInstance();
     };
 }
 

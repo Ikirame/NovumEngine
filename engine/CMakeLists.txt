@@ -35,7 +35,7 @@ set(PLATFORM_SRC_FILES
 
 set(EVENT_INCLUDE_FILES
         include/event/Event.hpp
-        include/event/EventDispatcher.hpp
+        include/event/EventBus.hpp
         include/event/window/WindowEvent.h)
 
 set(OPENGL_GRAPHICS_INCLUDE_FILES
