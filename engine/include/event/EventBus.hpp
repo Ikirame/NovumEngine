@@ -16,8 +16,6 @@ namespace novum_engine::event
 {
     class EventBus
     {
-        using EventCallback = std::function<void(const Event&)>;
-
     public:
         explicit EventBus() noexcept = default;
 
@@ -54,6 +52,8 @@ namespace novum_engine::event
         }
 
     private:
+        using EventCallback = std::function<void(const Event&)>;
+
         std::unordered_map<EventType, std::vector<EventCallback> > m_listeners;
     };
 }
