@@ -10,14 +10,14 @@
 #include <string_view>
 
 #ifdef NOVUM_ENGINE_DEBUG
-#define NOVUM_ENGINE_LOG_DEBUG(msg)        novum_engine::utility::Logger::getInstance().debug(msg)
+#define NOVUM_ENGINE_LOG_DEBUG(msg)     novum_engine::utility::Logger::getInstance().debug(msg)
 #else
-#define NOVUM_ENGINE_LOG_DEBUG(msg)
+#define NOVUM_ENGINE_LOG_DEBUG(msg)     ((void)(msg))
 #endif
 
-#define NOVUM_ENGINE_LOG_INFO(msg)         novum_engine::utility::Logger::getInstance().info(msg)
-#define NOVUM_ENGINE_LOG_WARN(msg)         novum_engine::utility::Logger::getInstance().warn(msg)
-#define NOVUM_ENGINE_LOG_ERROR(msg)        novum_engine::utility::Logger::getInstance().error(msg)
+#define NOVUM_ENGINE_LOG_INFO(msg)      novum_engine::utility::Logger::getInstance().info(msg)
+#define NOVUM_ENGINE_LOG_WARN(msg)      novum_engine::utility::Logger::getInstance().warn(msg)
+#define NOVUM_ENGINE_LOG_ERROR(msg)     novum_engine::utility::Logger::getInstance().error(msg)
 
 namespace novum_engine::utility
 {

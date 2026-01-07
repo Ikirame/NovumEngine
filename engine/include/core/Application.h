@@ -8,6 +8,7 @@
 #define NOVUM_ENGINE_APPLICATION_H
 
 #include "graphics/renderer/Renderer.h"
+#include "input/InputSystem.h"
 #include "platform/Platform.h"
 #include "platform/Window.h"
 
@@ -44,6 +45,8 @@ namespace novum_engine::core
         event::EventBus m_event_dispatcher{};
 
         platform::Platform& m_platform = platform::Platform::getInstance();
+
+        std::unique_ptr<input::InputSystem> m_input_system;
     };
 }
 

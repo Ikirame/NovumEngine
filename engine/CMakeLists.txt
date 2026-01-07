@@ -38,13 +38,23 @@ set(EVENT_INCLUDE_FILES
         include/event/EventBus.hpp
         include/event/window/WindowEvent.h)
 
-set(OPENGL_GRAPHICS_INCLUDE_FILES
+set(GRAPHICS_INCLUDE_FILES
         include/graphics/renderer/Renderer.h
         include/graphics/backend/opengl/OpenGLBackend.h)
 
-set(OPENGL_GRAPHICS_SRC_FILES
+set(GRAPHICS_SRC_FILES
         src/graphics/renderer/Renderer.cpp
         src/graphics/backend/opengl/OpenGLBackend.cpp)
+
+set(INPUT_INCLUDE_FILES
+        include/input/InputSystem.h
+        include/input/KeyboardInput.h
+        include/input/MouseInput.h)
+
+set(INPUT_SRC_FILES
+        src/input/InputSystem.cpp
+        src/input/glfw/GlfwKeyboardInput.cpp
+        src/input/glfw/GlfwMouseInput.cpp)
 
 set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp
@@ -54,8 +64,8 @@ set(UTILITY_SRC_FILES
         src/utility/Logger.cpp)
 
 add_library(${PROJECT_NAME} STATIC
-        ${CORE_SRC_FILES} ${PLATFORM_SRC_FILES} ${OPENGL_GRAPHICS_INCLUDE_FILES} ${UTILITY_SRC_FILES}
-        ${CORE_INCLUDE_FILES} ${PLATFORM_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} ${OPENGL_GRAPHICS_SRC_FILES} ${EVENT_INCLUDE_FILES})
+        ${CORE_SRC_FILES} ${PLATFORM_SRC_FILES} ${GRAPHICS_SRC_FILES} ${INPUT_SRC_FILES} ${UTILITY_SRC_FILES}
+        ${CORE_INCLUDE_FILES} ${PLATFORM_INCLUDE_FILES} ${EVENT_INCLUDE_FILES} ${GRAPHICS_INCLUDE_FILES} ${INPUT_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} )
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)

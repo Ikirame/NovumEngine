@@ -19,6 +19,7 @@ namespace novum_engine::core
         m_window = m_platform.createWindow(m_event_dispatcher);
         m_graphics_renderer = std::make_unique<graphics::renderer::Renderer>(
             m_platform.createGraphicsBackend(), m_event_dispatcher);
+        m_input_system = std::make_unique<input::InputSystem>(m_window);
 
         m_event_dispatcher.subscribe<event::window::WindowClosedEvent>([this](event::window::WindowClosedEvent& event)
         {
@@ -37,6 +38,7 @@ namespace novum_engine::core
         while (m_is_running)
         {
             m_platform.pollEvents();
+            m_input_system->update();
 
             self.onUpdate();
 
