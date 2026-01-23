@@ -23,7 +23,7 @@ namespace novum_engine::input
     class MouseInput
     {
     public:
-        explicit MouseInput(std::unique_ptr<platform::Window>& window);
+        explicit MouseInput(platform::Window& window);
 
         MouseInput(MouseInput const& rhs) noexcept = delete;
         MouseInput(MouseInput&& rhs) noexcept = delete;

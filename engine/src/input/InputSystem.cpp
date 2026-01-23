@@ -6,7 +6,7 @@
 
 #include "input/InputSystem.h"
 
-novum_engine::input::InputSystem::InputSystem(std::unique_ptr<platform::Window>& window) : m_keyboard(
+novum_engine::input::InputSystem::InputSystem(platform::Window& window) : m_keyboard(
     std::make_unique<KeyboardInput>(window)), m_mouse(std::make_unique<MouseInput>(window)) {}
 
 void novum_engine::input::InputSystem::update() const noexcept

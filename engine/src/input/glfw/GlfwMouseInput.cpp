@@ -11,9 +11,9 @@
 
 struct novum_engine::input::MouseInput::MouseInputImpl
 {
-    explicit MouseInputImpl(const std::unique_ptr<platform::Window>& window) noexcept
+    explicit MouseInputImpl(const platform::Window& window) noexcept
     {
-        m_window = static_cast<GLFWwindow*>(window->getNativeWindow());
+        m_window = static_cast<GLFWwindow*>(window.getNativeWindow());
 
         m_buttons_mapping =
         {
@@ -44,7 +44,7 @@ private:
     GLFWwindow *m_window;
 };
 
-novum_engine::input::MouseInput::MouseInput(std::unique_ptr<platform::Window>& window) : m_native_input(
+novum_engine::input::MouseInput::MouseInput(platform::Window& window) : m_native_input(
     std::make_unique<MouseInputImpl>(window)) {}
 
 void novum_engine::input::MouseInput::update() noexcept

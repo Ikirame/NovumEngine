@@ -25,7 +25,7 @@ namespace novum_engine::input
     class KeyboardInput
     {
     public:
-        explicit KeyboardInput(std::unique_ptr<platform::Window>& window);
+        explicit KeyboardInput(platform::Window& window);
 
         KeyboardInput(KeyboardInput const& rhs) noexcept = delete;
         KeyboardInput(KeyboardInput&& rhs) noexcept = delete;

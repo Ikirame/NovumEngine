@@ -16,10 +16,11 @@ namespace novum_engine::core
     template <typename Derived>
     Application<Derived>::Application() noexcept
     {
-        m_window = m_platform.createWindow(m_event_dispatcher);
-        m_graphics_renderer = std::make_unique<graphics::renderer::Renderer>(
-            m_platform.createGraphicsBackend(), m_event_dispatcher);
-        m_input_system = std::make_unique<input::InputSystem>(m_window);
+        m_platform = std::make_unique<platform::Platform>(graphics::GraphicsBackend::OpenGL, m_event_dispatcher);
+        m_window = m_platform->createWindow("NovumEngine", 800, 600);
+
+        m_graphics_renderer = std::make_unique<graphics::renderer::Renderer>(*m_platform, m_event_dispatcher);
+        m_input_system = std::make_unique<input::InputSystem>(*m_window);
 
         m_event_dispatcher.subscribe<event::window::WindowClosedEvent>([this](event::window::WindowClosedEvent& event)
         {
@@ -37,7 +38,7 @@ namespace novum_engine::core
         const auto& self = static_cast<const Derived&>(*this);
         while (m_is_running)
         {
-            m_platform.pollEvents();
+            m_platform->pollEvents();
             m_input_system->update();
 
             self.onUpdate();

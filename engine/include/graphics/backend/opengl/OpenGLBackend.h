@@ -7,15 +7,14 @@
 #ifndef NOVUM_ENGINE_OPENGL_BACKEND_H
 #define NOVUM_ENGINE_OPENGL_BACKEND_H
 
+#include "platform/Platform.h"
+
 namespace novum_engine::graphics::backend::opengl
 {
-    typedef void (*OpenGLApiProc)();
-    typedef OpenGLApiProc (*OpenGLLoadFunc)(const char *name);
-
     class OpenGLBackend
     {
     public:
-        explicit OpenGLBackend(const OpenGLLoadFunc& glLoadFunc) noexcept;
+        explicit OpenGLBackend(platform::Platform& platform) noexcept;
 
         OpenGLBackend(OpenGLBackend const& rhs) noexcept = delete;
         OpenGLBackend(OpenGLBackend&& rhs) noexcept = delete;

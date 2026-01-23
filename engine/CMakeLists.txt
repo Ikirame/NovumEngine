@@ -39,8 +39,10 @@ set(EVENT_INCLUDE_FILES
         include/event/window/WindowEvent.h)
 
 set(GRAPHICS_INCLUDE_FILES
+        include/graphics/GraphicsBackend.h
         include/graphics/renderer/Renderer.h
-        include/graphics/backend/opengl/OpenGLBackend.h)
+        include/graphics/backend/opengl/OpenGLBackend.h
+        include/graphics/backend/opengl/OpenGLContext.h)
 
 set(GRAPHICS_SRC_FILES
         src/graphics/renderer/Renderer.cpp

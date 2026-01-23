@@ -11,13 +11,14 @@
 
 #include "event/EventBus.hpp"
 #include "graphics/backend/opengl/OpenGLBackend.h"
+#include "platform/Platform.h"
 
 namespace novum_engine::graphics::renderer
 {
     class Renderer
     {
     public:
-        explicit Renderer(std::unique_ptr<backend::opengl::OpenGLBackend> graphicsBackend,
+        explicit Renderer(platform::Platform& platform,
                           event::EventBus& eventBus) noexcept;
 
         Renderer(Renderer const& rhs) noexcept = delete;

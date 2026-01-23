@@ -6,34 +6,39 @@
 
 #include <GLFW/glfw3.h>
 
+#include "graphics/backend/opengl/OpenGLContext.h"
 #include "platform/Platform.h"
 #include "utility/Assertion.hpp"
 
-std::unique_ptr<novum_engine::platform::Window> novum_engine::platform::Platform::createWindow(
-    event::EventBus& eventDispatcher) const noexcept
-{
-    return std::make_unique<Window>(800, 600, "NovumEngine", eventDispatcher);
-}
-
-std::unique_ptr<novum_engine::graphics::backend::opengl::OpenGLBackend>
-novum_engine::platform::Platform::createGraphicsBackend() const noexcept
-{
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    return std::make_unique<graphics::backend::opengl::OpenGLBackend>(glfwGetProcAddress);
-}
-
-novum_engine::platform::Platform::Platform() noexcept
+novum_engine::platform::Platform::Platform(const graphics::GraphicsBackend graphicsBackend,
+                                           event::EventBus& eventBus) noexcept : m_eventBus(eventBus)
 {
     const auto glfw_ret = glfwInit();
     NOVUM_ENGINE_ASSERT(glfw_ret, "GLFW initialization failed");
+
+    // Todo: Create Factory to setup graphics context
+    if (graphicsBackend == graphics::GraphicsBackend::OpenGL)
+    {
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        auto openGlContext = graphics::backend::OpenGLContext{};
+        openGlContext.glLoadFunc = glfwGetProcAddress;
+        m_graphics_context.emplace(openGlContext);
+    }
 }
 
-novum_engine::platform::Platform::~Platform() noexcept
+std::unique_ptr<novum_engine::platform::Window> novum_engine::platform::Platform::createWindow(const std::string& title, int width, int height) const noexcept
 {
-    glfwTerminate();
+    return std::make_unique<Window>(title, width, height, m_eventBus);
 }
 
 void novum_engine::platform::Platform::pollEvents() const noexcept
 {
     glfwPollEvents();
+}
+
+novum_engine::platform::Platform::~Platform() noexcept
+{
+    glfwTerminate();
 }

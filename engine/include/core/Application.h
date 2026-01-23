@@ -44,8 +44,7 @@ namespace novum_engine::core
 
         event::EventBus m_event_dispatcher{};
 
-        platform::Platform& m_platform = platform::Platform::getInstance();
-
+        std::unique_ptr<platform::Platform> m_platform;
         std::unique_ptr<input::InputSystem> m_input_system;
     };
 }

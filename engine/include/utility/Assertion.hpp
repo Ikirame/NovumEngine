@@ -22,7 +22,7 @@
 #define NOVUM_ENGINE_ASSERT(expr, message)                                                                              \
     if (!(expr))                                                                                                        \
     {                                                                                                                   \
-        std::cerr << "Assertion failed: " << message << " on file " << __FILE__ << "at line" << __LINE__ << std::endl;  \
+        std::cerr << "Assertion failed: " << message << " on file " << __FILE__ << " at line " << __LINE__ << std::endl;  \
         ASSERTION_BREAK();                                                                                              \
     }
 #else

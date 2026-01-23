@@ -8,7 +8,6 @@
 #define NOVUM_ENGINE_WINDOW_H
 
 #include <memory>
-#include <string>
 
 #include "event/EventBus.hpp"
 
@@ -17,8 +16,7 @@ namespace novum_engine::platform
     class Window
     {
     public:
-        explicit Window(int width, int height, const std::string& title,
-                        event::EventBus& eventDispatcher) noexcept;
+        explicit Window(const std::string& title, int width, int height, event::EventBus& eventDispatcher) noexcept;
 
         Window(Window const& rhs) noexcept = delete;
         Window(Window&& rhs) noexcept = delete;

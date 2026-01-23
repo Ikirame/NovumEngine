@@ -14,7 +14,7 @@
 
 struct novum_engine::platform::Window::WindowImpl
 {
-    explicit WindowImpl(const int width, const int height, const std::string& title)
+    explicit WindowImpl(const std::string& title, const int width, const int height)
     {
         GLFWwindow *window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
         NOVUM_ENGINE_ASSERT(window != nullptr, "GLFW window creation failed");
@@ -65,10 +65,10 @@ private:
     std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_handle;
 };
 
-novum_engine::platform::Window::Window(const int width, const int height,
-                                       const std::string& title,
+novum_engine::platform::Window::Window(const std::string& title, const int width, const int height,
                                        event::EventBus& eventDispatcher) noexcept : m_native_window(
-        std::make_unique<WindowImpl>(width, height, title)), m_event_dispatcher(eventDispatcher)
+        std::make_unique<WindowImpl>(title, width, height)),
+    m_event_dispatcher(eventDispatcher)
 {
     m_native_window->onClose = [this] { this->onClose(); };
     m_native_window->onResize = [this](const int w, const int h) { this->onResize(w, h); };

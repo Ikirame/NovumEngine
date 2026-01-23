@@ -13,9 +13,9 @@
 
 struct novum_engine::input::KeyboardInput::KeyboardInputImpl
 {
-    explicit KeyboardInputImpl(const std::unique_ptr<platform::Window>& window) noexcept
+    explicit KeyboardInputImpl(const platform::Window& window) noexcept
     {
-        m_window = static_cast<GLFWwindow*>(window->getNativeWindow());
+        m_window = static_cast<GLFWwindow*>(window.getNativeWindow());
 
         m_keys_mapping =
         {
@@ -48,7 +48,7 @@ private:
     GLFWwindow *m_window;
 };
 
-novum_engine::input::KeyboardInput::KeyboardInput(std::unique_ptr<platform::Window>& window) : m_native_input(
+novum_engine::input::KeyboardInput::KeyboardInput(platform::Window& window) : m_native_input(
     std::make_unique<KeyboardInputImpl>(window)) {}
 
 void novum_engine::input::KeyboardInput::update() noexcept

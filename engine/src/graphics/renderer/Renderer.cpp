@@ -8,11 +8,10 @@
 
 #include "event/window/WindowEvent.h"
 
-novum_engine::graphics::renderer::Renderer::Renderer(
-    std::unique_ptr<backend::opengl::OpenGLBackend> graphicsBackend,
-    event::EventBus& eventBus) noexcept : m_event_bus(eventBus)
+novum_engine::graphics::renderer::Renderer::Renderer(platform::Platform& platform,
+                                                     event::EventBus& eventBus) noexcept : m_event_bus(eventBus)
 {
-    m_graphics_backend = std::move(graphicsBackend);
+    m_graphics_backend = std::make_unique<backend::opengl::OpenGLBackend>(platform);
     m_event_bus.subscribe<event::window::WindowResizedEvent>([this](event::window::WindowResizedEvent& event)
     {
         m_graphics_backend->resizeViewport(0, 0, event.width(), event.height());

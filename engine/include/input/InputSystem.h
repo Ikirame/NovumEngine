@@ -24,7 +24,7 @@ namespace novum_engine::input
     class InputSystem
     {
     public:
-        explicit InputSystem(std::unique_ptr<platform::Window>& window);
+        explicit InputSystem(platform::Window& window);
 
         InputSystem(InputSystem const& rhs) noexcept = delete;
         InputSystem(InputSystem&& rhs) noexcept = delete;
