@@ -1,22 +1,22 @@
 /**
- *  @file    OpenglGraphicsApi.cpp
+ *  @file    OpenGLBackend.cpp
  *  @author  Valentin Gerard (Ikirame)
  *  @date    12/30/2024
  **/
 
-#include <glad/gl.h>
-#include <GLFW/glfw3.h>
+#include <format>
 
-#include "graphics/api/opengl/OpenglGraphicsApi.h"
+#include <glad/gl.h>
+
+#include "graphics/backend/opengl/OpenGLBackend.h"
 
 #include "utility/Assertion.hpp"
 #include "utility/Logger.h"
 
-novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noexcept
+novum_engine::graphics::backend::opengl::OpenGLBackend::OpenGLBackend(const OpenGLContext& context) noexcept
 {
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    const auto glad_ret = gladLoadGL(context.glLoadFunc);
 
-    const auto glad_ret = gladLoadGL(glfwGetProcAddress);
     NOVUM_ENGINE_ASSERT(glad_ret, "GLAD initialization failed");
 
 #ifdef NOVUM_ENGINE_DEBUG
@@ -34,14 +34,17 @@ novum_engine::graphics::api::opengl::OpenglGraphicsApi::OpenglGraphicsApi() noex
 #endif
 }
 
-void novum_engine::graphics::api::opengl::OpenglGraphicsApi::resizeViewport(const int x, const int y, const int width,
-                                                                            const int height) noexcept
-{
-    glViewport(x, y, width, height);
-}
-
-void novum_engine::graphics::api::opengl::OpenglGraphicsApi::render() noexcept
+void novum_engine::graphics::backend::opengl::OpenGLBackend::beginFrame() const noexcept
 {
     glClearColor(0.1f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void novum_engine::graphics::backend::opengl::OpenGLBackend::draw() const noexcept {}
+void novum_engine::graphics::backend::opengl::OpenGLBackend::endFrame() const noexcept {}
+
+void novum_engine::graphics::backend::opengl::OpenGLBackend::resizeViewport(const int x, const int y, const int width,
+                                                                            const int height) const noexcept
+{
+    glViewport(x, y, width, height);
 }

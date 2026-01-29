@@ -27,22 +27,38 @@ set(CORE_SRC_FILES )
 
 set(PLATFORM_INCLUDE_FILES
         include/platform/Platform.h
-        include/platform/Window.h)
+        include/platform/Window.h
+        include/platform/devices/KeyboardDevice.h
+        include/platform/devices/MouseDevice.h)
 
 set(PLATFORM_SRC_FILES
         src/platform/glfw/GlfwPlatform.cpp
-        src/platform/glfw/GlfwWindow.cpp)
+        src/platform/glfw/GlfwWindow.cpp
+        src/platform/glfw/devices/KeyboardDevice.cpp
+        src/platform/glfw/devices/MouseDevice.cpp)
 
 set(EVENT_INCLUDE_FILES
         include/event/Event.hpp
-        include/event/EventDispatcher.hpp
+        include/event/EventBus.hpp
         include/event/window/WindowEvent.h)
 
-set(OPENGL_GRAPHICS_API_INCLUDE_FILES
-        include/graphics/api/opengl/OpenglGraphicsApi.h)
+set(GRAPHICS_INCLUDE_FILES
+        include/graphics/renderer/Renderer.h
+        include/graphics/backend/opengl/OpenGLBackend.h
+        include/graphics/backend/opengl/OpenGLContext.h)
 
-set(OPENGL_GRAPHICS_API_SRC_FILES
-        src/graphics/api/opengl/OpenglGraphicsApi.cpp)
+set(GRAPHICS_SRC_FILES
+        src/graphics/renderer/Renderer.cpp
+        src/graphics/backend/opengl/OpenGLBackend.cpp)
+
+set(INPUT_INCLUDE_FILES
+        include/input/InputContext.h
+        include/input/KeyboardContext.h
+        include/input/MouseContext.h
+        include/input/InputSystem.h)
+
+set(INPUT_SRC_FILES
+        src/input/InputSystem.cpp)
 
 set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp
@@ -52,8 +68,8 @@ set(UTILITY_SRC_FILES
         src/utility/Logger.cpp)
 
 add_library(${PROJECT_NAME} STATIC
-        ${CORE_SRC_FILES} ${PLATFORM_SRC_FILES} ${OPENGL_GRAPHICS_API_SRC_FILES} ${UTILITY_SRC_FILES}
-        ${CORE_INCLUDE_FILES} ${PLATFORM_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} ${OPENGL_GRAPHICS_API_INCLUDE_FILES} ${EVENT_INCLUDE_FILES})
+        ${CORE_SRC_FILES} ${PLATFORM_SRC_FILES} ${GRAPHICS_SRC_FILES} ${INPUT_SRC_FILES} ${UTILITY_SRC_FILES}
+        ${CORE_INCLUDE_FILES} ${PLATFORM_INCLUDE_FILES} ${EVENT_INCLUDE_FILES} ${GRAPHICS_INCLUDE_FILES} ${INPUT_INCLUDE_FILES} ${UTILITY_INCLUDE_FILES} )
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /std:c++20)

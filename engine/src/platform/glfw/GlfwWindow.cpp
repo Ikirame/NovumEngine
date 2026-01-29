@@ -9,13 +9,12 @@
 #include "utility/Assertion.hpp"
 
 #include "event/window/WindowEvent.h"
-#include "graphics/api/opengl/OpenglGraphicsApi.h"
 
 #include "platform/Window.h"
 
-struct novum_engine::core::Window::WindowImpl
+struct novum_engine::platform::Window::WindowImpl
 {
-    explicit WindowImpl(const int width, const int height, const std::string& title)
+    explicit WindowImpl(const std::string& title, const int width, const int height)
     {
         GLFWwindow *window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
         NOVUM_ENGINE_ASSERT(window != nullptr, "GLFW window creation failed");
@@ -32,6 +31,11 @@ struct novum_engine::core::Window::WindowImpl
     void swapBuffers() const
     {
         glfwSwapBuffers(m_handle.get());
+    }
+
+    GLFWwindow* getNativeWindow() const noexcept
+    {
+        return m_handle.get();
     }
 
     std::function<void()> onClose = [] {};
@@ -61,31 +65,35 @@ private:
     std::unique_ptr<GLFWwindow, GlfwWindowDeleter> m_handle;
 };
 
-novum_engine::core::Window::Window(const int width, const int height,
-                                   const std::string& title) noexcept : m_native_window(
-    std::make_unique<WindowImpl>(width, height, title))
+novum_engine::platform::Window::Window(const std::string& title, const int width, const int height,
+                                       event::EventBus& eventDispatcher) noexcept : m_native_window(
+        std::make_unique<WindowImpl>(title, width, height)),
+    m_event_dispatcher(eventDispatcher)
 {
     m_native_window->onClose = [this] { this->onClose(); };
     m_native_window->onResize = [this](const int w, const int h) { this->onResize(w, h); };
-
-    m_graphics_api = std::make_unique<graphics::api::opengl::OpenglGraphicsApi>();
 }
 
-novum_engine::core::Window::~Window() noexcept = default;
+novum_engine::platform::Window::~Window() noexcept = default;
 
-void novum_engine::core::Window::update() const noexcept
+void novum_engine::platform::Window::swapBuffers() const noexcept
 {
     m_native_window->swapBuffers();
 }
 
-void novum_engine::core::Window::onResize(const int width, const int height) noexcept
+void* novum_engine::platform::Window::getNativeWindow() const noexcept
 {
-    event::window::WindowResizedEvent resized_event(width, height);
-    m_event_dispatcher.post(resized_event);
+    return m_native_window->getNativeWindow();
 }
 
-void novum_engine::core::Window::onClose() noexcept
+void novum_engine::platform::Window::onResize(const int width, const int height) const noexcept
 {
-    event::window::WindowEvent window_event;
-    m_event_dispatcher.post(window_event);
+    event::window::WindowResizedEvent resizedEvent(width, height);
+    m_event_dispatcher.publish(resizedEvent);
+}
+
+void novum_engine::platform::Window::onClose() const noexcept
+{
+    event::window::WindowClosedEvent closedEvent;
+    m_event_dispatcher.publish(closedEvent);
 }

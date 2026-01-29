@@ -25,6 +25,7 @@ namespace novum_engine::testing
 
         void onInit() const noexcept;
         static void onUpdate() noexcept;
+        static void onUpdateUI() noexcept;
         static void onDestroy() noexcept;
 
         explicit TestApplication() noexcept = default;
