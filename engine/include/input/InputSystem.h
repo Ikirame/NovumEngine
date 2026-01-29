@@ -7,10 +7,8 @@
 #ifndef NOVUM_ENGINE_INPUT_SYSTEM_H
 #define NOVUM_ENGINE_INPUT_SYSTEM_H
 
+#include "InputContext.h"
 #include "platform/Window.h"
-
-#include "KeyboardInput.h"
-#include "MouseInput.h"
 
 namespace novum_engine::input
 {
@@ -24,7 +22,7 @@ namespace novum_engine::input
     class InputSystem
     {
     public:
-        explicit InputSystem(platform::Window& window);
+        explicit InputSystem() = default;
 
         InputSystem(InputSystem const& rhs) noexcept = delete;
         InputSystem(InputSystem&& rhs) noexcept = delete;
@@ -32,14 +30,16 @@ namespace novum_engine::input
         InputSystem& operator=(InputSystem const& rhs) noexcept = delete;
         InputSystem& operator=(InputSystem&& rhs) noexcept = delete;
 
-        void update() const noexcept;
+        void update(const InputContext& inputContext) noexcept;
 
-        KeyboardInput& getKeyboardInput() const noexcept { return *m_keyboard; }
-        MouseInput& getMouseInput() const noexcept { return *m_mouse; }
+        [[nodiscard]] bool isKeyPressed(KeyboardKey key) const noexcept;
+
+        [[nodiscard]] bool isButtonPressed(MouseButton key) const noexcept;
+        [[nodiscard]] MousePosition getMousePosition() const noexcept;
 
     private:
-        std::unique_ptr<KeyboardInput> m_keyboard;
-        std::unique_ptr<MouseInput> m_mouse;
+        KeyboardContext m_keyboard_context;
+        MouseContext m_mouse_context;
     };
 }
 

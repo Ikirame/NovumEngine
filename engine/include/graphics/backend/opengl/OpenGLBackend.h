@@ -14,7 +14,7 @@ namespace novum_engine::graphics::backend::opengl
     class OpenGLBackend
     {
     public:
-        explicit OpenGLBackend(platform::Platform& platform) noexcept;
+        explicit OpenGLBackend(const OpenGLContext& context) noexcept;
 
         OpenGLBackend(OpenGLBackend const& rhs) noexcept = delete;
         OpenGLBackend(OpenGLBackend&& rhs) noexcept = delete;

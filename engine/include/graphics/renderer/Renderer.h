@@ -18,7 +18,7 @@ namespace novum_engine::graphics::renderer
     class Renderer
     {
     public:
-        explicit Renderer(platform::Platform& platform,
+        explicit Renderer(const platform::Platform& platform,
                           event::EventBus& eventBus) noexcept;
 
         Renderer(Renderer const& rhs) noexcept = delete;

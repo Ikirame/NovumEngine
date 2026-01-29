@@ -13,11 +13,9 @@
 #include "utility/Assertion.hpp"
 #include "utility/Logger.h"
 
-novum_engine::graphics::backend::opengl::OpenGLBackend::OpenGLBackend(platform::Platform& platform) noexcept
+novum_engine::graphics::backend::opengl::OpenGLBackend::OpenGLBackend(const OpenGLContext& context) noexcept
 {
-    // Todo: Check if the backend should get the graphics context or if it should be provided by the renderer
-    auto [glLoadFunc] = platform.getGraphicsContext<OpenGLContext>();
-    const auto glad_ret = gladLoadGL(glLoadFunc);
+    const auto glad_ret = gladLoadGL(context.glLoadFunc);
 
     NOVUM_ENGINE_ASSERT(glad_ret, "GLAD initialization failed");
 

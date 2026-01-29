@@ -10,27 +10,38 @@
 #include "platform/Platform.h"
 #include "utility/Assertion.hpp"
 
-novum_engine::platform::Platform::Platform(const graphics::GraphicsBackend graphicsBackend,
-                                           event::EventBus& eventBus) noexcept : m_eventBus(eventBus)
+novum_engine::platform::Platform::Platform(event::EventBus& eventBus) noexcept : m_eventBus(eventBus)
 {
     const auto glfw_ret = glfwInit();
     NOVUM_ENGINE_ASSERT(glfw_ret, "GLFW initialization failed");
 
-    // Todo: Create Factory to setup graphics context
-    if (graphicsBackend == graphics::GraphicsBackend::OpenGL)
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    m_graphics_context = graphics::backend::OpenGLContext
     {
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        auto openGlContext = graphics::backend::OpenGLContext{};
-        openGlContext.glLoadFunc = glfwGetProcAddress;
-        m_graphics_context.emplace(openGlContext);
-    }
+        .glLoadFunc = glfwGetProcAddress
+    };
 }
 
 std::unique_ptr<novum_engine::platform::Window> novum_engine::platform::Platform::createWindow(const std::string& title, int width, int height) const noexcept
 {
     return std::make_unique<Window>(title, width, height, m_eventBus);
+}
+
+novum_engine::graphics::backend::OpenGLContext novum_engine::platform::Platform::getGraphicsContext() const noexcept
+{
+    return m_graphics_context;
+}
+
+novum_engine::input::InputContext novum_engine::platform::Platform::getInputContext(const Window& window) const noexcept
+{
+    return input::InputContext
+    {
+        .keyboardContext = m_keyboard_device.getKeyboardContext(window),
+        .mouseContext = m_mouse_device.getMouseContext(window)
+    };
 }
 
 void novum_engine::platform::Platform::pollEvents() const noexcept

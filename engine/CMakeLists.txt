@@ -27,11 +27,15 @@ set(CORE_SRC_FILES )
 
 set(PLATFORM_INCLUDE_FILES
         include/platform/Platform.h
-        include/platform/Window.h)
+        include/platform/Window.h
+        include/platform/devices/KeyboardDevice.h
+        include/platform/devices/MouseDevice.h)
 
 set(PLATFORM_SRC_FILES
         src/platform/glfw/GlfwPlatform.cpp
-        src/platform/glfw/GlfwWindow.cpp)
+        src/platform/glfw/GlfwWindow.cpp
+        src/platform/glfw/devices/KeyboardDevice.cpp
+        src/platform/glfw/devices/MouseDevice.cpp)
 
 set(EVENT_INCLUDE_FILES
         include/event/Event.hpp
@@ -39,7 +43,6 @@ set(EVENT_INCLUDE_FILES
         include/event/window/WindowEvent.h)
 
 set(GRAPHICS_INCLUDE_FILES
-        include/graphics/GraphicsBackend.h
         include/graphics/renderer/Renderer.h
         include/graphics/backend/opengl/OpenGLBackend.h
         include/graphics/backend/opengl/OpenGLContext.h)
@@ -49,14 +52,13 @@ set(GRAPHICS_SRC_FILES
         src/graphics/backend/opengl/OpenGLBackend.cpp)
 
 set(INPUT_INCLUDE_FILES
-        include/input/InputSystem.h
-        include/input/KeyboardInput.h
-        include/input/MouseInput.h)
+        include/input/InputContext.h
+        include/input/KeyboardContext.h
+        include/input/MouseContext.h
+        include/input/InputSystem.h)
 
 set(INPUT_SRC_FILES
-        src/input/InputSystem.cpp
-        src/input/glfw/GlfwKeyboardInput.cpp
-        src/input/glfw/GlfwMouseInput.cpp)
+        src/input/InputSystem.cpp)
 
 set(UTILITY_INCLUDE_FILES
         include/utility/Assertion.hpp

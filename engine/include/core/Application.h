@@ -26,13 +26,13 @@ namespace novum_engine::core
 
         ~Application() noexcept;
 
-        static const Derived& getInstance()
+        static Derived& getInstance()
         {
             static Derived instance;
             return instance;
         }
 
-        void run() const noexcept;
+        void run() noexcept;
 
     protected:
         explicit Application() noexcept;
@@ -41,11 +41,10 @@ namespace novum_engine::core
 
         std::unique_ptr<platform::Window> m_window;
         std::unique_ptr<graphics::renderer::Renderer> m_graphics_renderer;
-
-        event::EventBus m_event_dispatcher{};
-
         std::unique_ptr<platform::Platform> m_platform;
-        std::unique_ptr<input::InputSystem> m_input_system;
+
+        input::InputSystem m_input_system{};
+        event::EventBus m_event_dispatcher{};
     };
 }
 
